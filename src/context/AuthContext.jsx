@@ -1,30 +1,38 @@
-import { createContext, useState } from 'react';
+import { createContext, useState } from "react";
+import PropTypes from "prop-types";
 
 // Créer le contexte
 export const AuthContext = createContext();
 
 // Fournisseur de contexte
 export const AuthProvider = ({ children }) => {
-    const [auth, setAuth] = useState({
-        token: localStorage.getItem('token') || '',
-        role: localStorage.getItem('role') || ''
-    });
+  const getLocalStorageItem = (key) => {
+    return localStorage.getItem(key) || "";
+  };
 
-    const login = (token, role) => {
-        localStorage.setItem('token', token);
-        localStorage.setItem('role', role);
-        setAuth({ token, role });
-    };
+  const [auth, setAuth] = useState({
+    token: getLocalStorageItem("token"),
+    role: getLocalStorageItem("role"),
+  });
 
-    const logout = () => {
-        localStorage.removeItem('token');
-        localStorage.removeItem('role');
-        setAuth({ token: '', role: '' });
-    };
+  const login = (token, role) => {
+    localStorage.setItem("token", token);
+    localStorage.setItem("role", role);
+    setAuth({ token, role });
+  };
 
-    return (
-        <AuthContext.Provider value={{ auth, login, logout }}>
-            {children}
-        </AuthContext.Provider>
-    );
+  const logout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    setAuth({ token: "", role: "" });
+  };
+
+  return (
+    <AuthContext.Provider value={{ auth, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+AuthProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };

@@ -1,23 +1,55 @@
-import { useContext } from 'react';
-import { useFormManager } from '../hooks/useFormManager';
-import { loginUser } from '../api/loginAPi';
+import { useState, useContext, useEffect } from 'react';
+import { useMutation } from 'react-query';
 import { AuthContext } from '../context/AuthContext';
-
+import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../api/loginAPi';
 
 const Login = () => {
-    const { login } = useContext(AuthContext
-    );
+    const navigate = useNavigate();
+    const { auth, login } = useContext(AuthContext); // Ajout de `auth` pour vérifier l'état d'authentification
+    const [values, setValues] = useState({ email: "", password: "" });
+    const [error, setError] = useState(null);
+    const [successMessage, setSuccessMessage] = useState(null);
 
-    const initialValues = { email: "", password: "" };
-
-    const onSuccess = (data) => {
-        console.log("Login successful, received data:", data);
-        if (data.success) {
-            login(data.token, data.role); // Mise à jour du contexte avec les données d'authentification
+    // Redirection si l'utilisateur est déjà connecté
+    useEffect(() => {
+        if (auth.token) {
+            navigate("/");
         }
+    }, [auth.token, navigate]);
+
+    const mutation = useMutation(loginUser, {
+        onSuccess: (data) => {
+            if (data.success) {
+                login(data.token, data.role); // Mise à jour du contexte avec les données d'authentification
+                setSuccessMessage(data.message); // Utiliser le message de succès provenant du serveur
+                setError(null);
+                navigate("/");
+            } else {
+                setError(data.message);
+                setSuccessMessage(null);
+            }
+        },
+        onError: () => {
+            setError("Erreur lors de la connexion. Veuillez réessayer.");
+            setSuccessMessage(null);
+        },
+    });
+
+    // Gestion des changements dans le formulaire
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setValues({
+            ...values,
+            [name]: value,
+        });
     };
 
-    const { values, error, successMessage, handleChange, handleSubmit } = useFormManager(initialValues, loginUser, onSuccess);
+    // Gestion de la soumission du formulaire
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        mutation.mutate(values); // Déclenche l'exécution de la mutation
+    };
 
     return (
         <section>

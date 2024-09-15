@@ -2,7 +2,6 @@ const OurServices = () => {
     return (
         <div>
             nos services
-            
         </div>
     );
 };
