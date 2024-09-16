@@ -1,59 +1,48 @@
-import { useEffect, useState, useContext } from "react";
-import axios from "axios";
+// src/components/SocialNetwork.jsx
+import { useEffect, useState, useContext } from 'react';
+import { AuthContext } from '../context/AuthContext';
+import { fetchSocialNetworks } from '../api/socialNetworkApi';
 
-import { URL } from "../api/urlServer";
-import { AuthContext } from "../context/AuthContext";
 
-const SocialNetworks = () => {
+const SocialNetwork = () => {
   const { auth } = useContext(AuthContext);
-  const [networks, setNetworks] = useState([]);
+  const [socialNetworks, setSocialNetworks] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchSocialNetworks = async () => {
-        console.log("Token utilisé :", auth.token);
+    const loadSocialNetworks = async () => {
       try {
-        const response = await axios.get(`${URL}getSocialNetworks`, {
-          headers: {
-            Authorization: `Bearer ${auth.token}`,
-          },
-        });
-
-        if (response.data.success) {
-          setNetworks(response.data.data);
+        const data = await fetchSocialNetworks(auth.token);
+        if (data.success) {
+          setSocialNetworks(data.data);
         } else {
-          setError(response.data.message);
+          throw new Error(data.message || 'Erreur inconnue.');
         }
       } catch (error) {
-        console.error("Erreur lors du chargement des réseaux sociaux:", error);
-        setError("Erreur lors du chargement des réseaux sociaux.");
+        console.error('Erreur lors de la requête API :', error);
+        setError(error.message);
       }
     };
 
-    fetchSocialNetworks();
-
-  }, [auth]);
+    loadSocialNetworks();
+  }, [auth.token]);
 
   if (error) {
-    return <p>{error}</p>;
+    return <p>Erreur : {error}</p>;
   }
 
   return (
     <div>
-      <h2>Réseaux Sociaux</h2>
-      frf
+      <h2>Nos Réseaux Sociaux</h2>
       <ul>
-        {networks.map((network) => (
-            <div key={network.id}>
-            <p >{network.platform}</p>
-            <p>social networks</p>
-            </div>
-      
-       
+        {socialNetworks.map(network => (
+          <div key={network.id}>
+            <p>{network.platform}</p>
+          </div>
         ))}
       </ul>
     </div>
   );
 };
 
-export default SocialNetworks;
+export default SocialNetwork;

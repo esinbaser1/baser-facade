@@ -13,18 +13,21 @@ export const AuthProvider = ({ children }) => {
   const [auth, setAuth] = useState({
     token: getLocalStorageItem("token"),
     role: getLocalStorageItem("role"),
+    userId: getLocalStorageItem("userId"), 
   });
 
-  const login = (token, role) => {
+  const login = (token, role, userId) => {
     localStorage.setItem("token", token);
     localStorage.setItem("role", role);
-    setAuth({ token, role });
+    localStorage.setItem("userId", userId); 
+    setAuth({ token, role, userId });
   };
 
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
-    setAuth({ token: "", role: "" });
+    localStorage.removeItem("userId");
+    setAuth({ token: "", role: "", userId: "" });
   };
 
   return (
@@ -33,6 +36,7 @@ export const AuthProvider = ({ children }) => {
     </AuthContext.Provider>
   );
 };
+
 AuthProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };

@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from 'react';
 import { useMutation } from 'react-query';
 import { AuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { loginUser } from '../api/loginAPi';
+import { loginUser } from '../api/loginApi';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -21,7 +21,7 @@ const Login = () => {
     const mutation = useMutation(loginUser, {
         onSuccess: (data) => {
             if (data.success) {
-                login(data.token, data.role); // Mise à jour du contexte avec les données d'authentification
+                login(data.token, data.role, data.user_id); // Mise à jour du contexte avec les données d'authentification
                 setSuccessMessage(data.message); // Utiliser le message de succès provenant du serveur
                 setError(null);
                 navigate("/");
@@ -54,7 +54,7 @@ const Login = () => {
     return (
         <section>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email">Email*</label>
                 <input
                     id="email"
                     type="text"
@@ -65,7 +65,7 @@ const Login = () => {
                     aria-required="true"
                 />
 
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">Mot de passe*</label>
                 <input
                     id="password"
                     type="password"
@@ -75,7 +75,7 @@ const Login = () => {
                     placeholder="Entrez votre mot de passe"
                     aria-required="true"
                 />
-                <button type="submit">Login</button>
+                <button type="submit">Connexion</button>
             </form>
             {error && <p>{error}</p>}
             {successMessage && <p>{successMessage}</p>}

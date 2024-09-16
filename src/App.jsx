@@ -5,9 +5,10 @@ import Home from "./pages/Home";
 import OurServices from "./pages/OurServices";
 import OurRealisations from "./pages/OurRealisations";
 import ContactUs from "./pages/ContactUs";
-// import PrivateRoute from "./components/PrivateRoute";
 import Admin from "./pages/ADMIN.JSX";
 import SocialNetworks from "./components/SocialNetworks";
+import ProtectedRoute from "./components/ProtectedRoute";
+
 
 const App = () => {
   return (
@@ -20,10 +21,10 @@ const App = () => {
           <Route path="/nosServices" element={<OurServices />} />
           <Route path="/nosRealisations" element={<OurRealisations />} />
           <Route path="/contactezNous" element={<ContactUs />} />
-          <Route path="/admin" element={<Admin />}/>
-          <Route path="/getSocialNetworks" element={<SocialNetworks />}/>
-          </Routes>
 
+          <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>}/>
+          <Route path="/socialNetwork" element={<ProtectedRoute><SocialNetworks/></ProtectedRoute>}/>
+          </Routes>
       </BrowserRouter>
     </div>
   );

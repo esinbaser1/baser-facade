@@ -1,7 +1,9 @@
+
+
 const Admin = () => {
     return (
         <div>
-        admin
+            <p>Admin</p>
         </div>
     );
 };
