@@ -21,8 +21,8 @@ const App = () => {
           <Route path="/nosServices" element={<OurServices />} />
           <Route path="/nosRealisations" element={<OurRealisations />} />
           <Route path="/contactezNous" element={<ContactUs />} />
-
-          <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>}/>
+          <Route path="/admin" element={<Admin />}/>
+          {/* <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>}/> */}
           <Route path="/socialNetwork" element={<ProtectedRoute><SocialNetworks/></ProtectedRoute>}/>
           </Routes>
       </BrowserRouter>

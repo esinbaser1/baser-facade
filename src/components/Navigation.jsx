@@ -2,24 +2,23 @@ import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { useMutation } from "react-query";
 import { logoutUser } from "../api/loginApi";
-
 
 const Navigation = () => {
   const { auth, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const mutation = useMutation(logoutUser, {
-    onSuccess: () => {
-      logout();
-      navigate("/");
+  const handleLogout = async () => {
+    try {
+      const response = await logoutUser();
+      console.log("Réponse du serveur lors de la déconnexion:", response);
+      logout(); // Supprimer les informations d'authentification du contexte et du localStorage
+      navigate("/"); // Rediriger vers la page d'accueil après la déconnexion
+    } catch (error) {
+      console.error("Erreur lors de la déconnexion", error);
     }
-  });
-
-  const handleLogout = () => {
-    mutation.mutate(auth.token); // Déclenche la mutation avec le token de l'utilisateur
   };
+  
 
   return (
     <header>
@@ -37,9 +36,8 @@ const Navigation = () => {
           <button
             onClick={handleLogout}
             aria-label="Déconnexion"
-            disabled={mutation.isLoading}  // Désactive le bouton si la déconnexion est en cours
           >
-            {mutation.isLoading ? "Déconnexion..." : "Déconnexion"}
+            Déconnexion
           </button>
         )}
       </nav>
