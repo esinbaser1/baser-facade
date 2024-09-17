@@ -29,7 +29,7 @@ const AddContent = () => {
       setContent("");
       setContentSection("");
       setContentStatus("");
-      toast.success(data.message);
+      toast.success(data.message || "Contenu ajouté avec succès!");
     },
     onError: (error) => {
       toast.error(error.message);

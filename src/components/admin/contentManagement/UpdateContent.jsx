@@ -1,17 +1,12 @@
 import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useParams } from "react-router-dom";
-import {
-  getContentById,
-  updateContent,
-  getSections,
-  getStatuses,
-} from "../../../api/contentApi";
+import { getContentById, updateContent, getSections, getStatuses} from "../../../api/contentApi";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const UpdateContent = () => {
-  const { id } = useParams();
+  const { idContent } = useParams();
   const queryClient = useQueryClient();
 
   const [content, setContent] = useState("");
@@ -30,8 +25,8 @@ const UpdateContent = () => {
 
   // Récupération des données du contenu
   useQuery({
-    queryKey: ["content", id], 
-    queryFn: () => getContentById(id),
+    queryKey: ["content", idContent], 
+    queryFn: () => getContentById(idContent),
 
     onSuccess: (data) => {
       if (data) {
@@ -45,25 +40,23 @@ const UpdateContent = () => {
       toast.error(error.message);
     }
   });
-  
 
   // Mutation pour mettre à jour le contenu
   const mutation = useMutation(updateContent, {
 
     onSuccess: (data) => { // 'data' contient la réponse du serveur
       queryClient.invalidateQueries("contents");
-      toast.success(data.message);
+      toast.success(data.message || "Contenu mis à jour avec succès!");
     },
     onError: (error) => {
       toast.error(error.message);
     }
-    
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
     mutation.mutate({
-      id,
+      idContent,
       content,
       section_id: contentSection,
       status_id: contentStatus,

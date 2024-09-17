@@ -29,7 +29,7 @@ const App = () => {
           <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>}/>
           <Route path="/socialNetwork" element={<ProtectedRoute><SocialNetworks/></ProtectedRoute>}/>
           <Route path="/gestionContenu" element={<ProtectedRoute><ContentManager/></ProtectedRoute>}/>
-          <Route path="/modifierContenu/:id" element={<ProtectedRoute><UpdateContent/></ProtectedRoute>} />
+          <Route path="/modifierContenu/:idContent" element={<ProtectedRoute><UpdateContent/></ProtectedRoute>} />
           </Routes>
       </BrowserRouter>
     </div>
