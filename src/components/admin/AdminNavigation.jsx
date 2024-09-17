@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 const AdminNavigation = () => {
     return (
         <div>
-            <NavLink to="">Gestion du contenu</NavLink>
+            <NavLink to="/gestionContenu">Gestion du contenu</NavLink>
             <NavLink to="">Gestion des images</NavLink>
             <NavLink to="">Gestion des réseaux sociaux</NavLink>
             <NavLink to="">Gestion des informations de contact</NavLink>

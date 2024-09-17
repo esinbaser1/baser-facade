@@ -6,7 +6,7 @@ axios.interceptors.request.use(
     const token = localStorage.getItem('token');
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
-      console.log("En-têtes envoyés avec la requête:", config.headers);
+      // console.log("En-têtes envoyés avec la requête:", config.headers);
     }
     return config;
   },

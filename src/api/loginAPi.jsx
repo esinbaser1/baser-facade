@@ -10,6 +10,7 @@ export const loginUser = async ({ email, password }) => {
     });
     return response.data; // une fois la réponse reçue, la fonction retourne les données de la réponse
 };
+
 export const logoutUser = async () => {
     const response = await axios.post(`${URL}logout`); 
     return response.data; // Retourne les données de la réponse après déconnexion

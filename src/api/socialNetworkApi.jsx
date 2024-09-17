@@ -11,8 +11,3 @@ export const fetchSocialNetworks = async (token) => {
   });
   return response.data; // Retourne les données de la réponse
 };
-
-
-
-
-

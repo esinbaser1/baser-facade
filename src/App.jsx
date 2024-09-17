@@ -5,9 +5,11 @@ import Home from "./pages/Home";
 import OurServices from "./pages/OurServices";
 import OurRealisations from "./pages/OurRealisations";
 import ContactUs from "./pages/ContactUs";
-import Admin from "./pages/ADMIN.JSX";
 import SocialNetworks from "./components/SocialNetworks";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Admin from "./pages/admin/Admin";
+import ContentManager from "./components/admin/contentManagement/ContentManager";
+import UpdateContent from "./components/admin/contentManagement/UpdateContent";
 
 
 const App = () => {
@@ -21,9 +23,13 @@ const App = () => {
           <Route path="/nosServices" element={<OurServices />} />
           <Route path="/nosRealisations" element={<OurRealisations />} />
           <Route path="/contactezNous" element={<ContactUs />} />
-          <Route path="/admin" element={<Admin />}/>
-          {/* <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>}/> */}
+
+          
+          {/* <Route path="/admin" element={<Admin />}/> */}
+          <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>}/>
           <Route path="/socialNetwork" element={<ProtectedRoute><SocialNetworks/></ProtectedRoute>}/>
+          <Route path="/gestionContenu" element={<ProtectedRoute><ContentManager/></ProtectedRoute>}/>
+          <Route path="/modifierContenu/:id" element={<ProtectedRoute><UpdateContent/></ProtectedRoute>} />
           </Routes>
       </BrowserRouter>
     </div>

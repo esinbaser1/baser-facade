@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import AdminNavigation from "../components/admin/AdminNavigation";
-import { checkAdminAccess } from "../api/adminApi";
+import AdminNavigation from "../../components/admin/AdminNavigation";
+import { checkAdminAccess } from "../../api/adminApi";
 
 const Admin = () => {
   const navigate = useNavigate();
