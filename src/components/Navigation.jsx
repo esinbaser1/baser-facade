@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
@@ -18,6 +18,11 @@ const Navigation = () => {
       console.error("Erreur lors de la déconnexion", error);
     }
   };
+  useEffect(() => {
+    // Forcer une mise à jour de l'interface utilisateur lorsque auth change
+    console.log("Changement d'état d'auth: ", auth);
+  }, [auth]); // Cet effet sera appelé à chaque fois que auth change
+
   
 
   return (
@@ -32,14 +37,16 @@ const Navigation = () => {
         {auth.role === "admin" && <NavLink to="/admin">Admin</NavLink>}
 
         {/* Afficher le bouton de déconnexion seulement si l'utilisateur est connecté */}
-        {auth.token && (
+        {auth.token ? (
           <button
             onClick={handleLogout}
             aria-label="Déconnexion"
           >
             Déconnexion
           </button>
-        )}
+        ) : null
+      
+      }
       </nav>
     </header>
   );

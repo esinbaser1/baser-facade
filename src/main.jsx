@@ -4,7 +4,6 @@ import App from './App.jsx';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { AuthProvider } from './context/AuthContext.jsx';
 import "./assets/styles/test.css";
-import "../utils/axiosInterceptor.jsx";
 
 const queryClient = new QueryClient();
 

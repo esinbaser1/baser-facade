@@ -1,7 +1,6 @@
-import axios from 'axios';
-import { URL } from './urlServer';
+import apiClient from "./apiClient";
 
 export const checkAdminAccess = async () => {
-  const response = await axios.post(`${URL}admin`); 
+  const response = await apiClient.post("admin"); 
   return response.data; 
 };
