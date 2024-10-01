@@ -15,17 +15,18 @@ export const addImage = async (formData) => {
 };
 
 export const getImageById = async (id) => {
-  const response = await apiClient.get(`imageById/${id}`);
-  return response.data.content;
+  const response = await apiClient.get(`imageById?id=${id}`); 
+  return response.data.image;
 };
 
-// Mettre à jour un contenu
 export const updateImage = async (updatedImage) => {
-  const response = await apiClient.post("updateImage", updatedImage);
+  const response = await apiClient.post("updateImage", updatedImage, {
+    headers: {
+      'Content-Type': 'multipart/form-data', 
+    },
+  });
   return response.data;
 };
-
-// Supprimer du contenu
 
 export const deleteImage = async (id) => {
   const response = await apiClient.post("deleteImage", { id });

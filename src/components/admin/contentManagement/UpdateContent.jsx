@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useParams } from "react-router-dom";
-import { getContentById, updateContent} from "../../../api/contentApi";
+import { getContentById, updateContent } from "../../../api/contentApi";
 import { getStatuses } from '../../../api/statusApi';
 import { getSections } from '../../../api/sectionApi';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const UpdateContent = () => {
+  
   const { idContent } = useParams();
   const queryClient = useQueryClient();
 
@@ -15,46 +16,51 @@ const UpdateContent = () => {
   const [contentSection, setContentSection] = useState("");
   const [contentStatus, setContentStatus] = useState("");
 
+  // Récupération des sections
   const { data: sectionData, isLoading: isLoadingSections, error: errorSections } = useQuery({
     queryKey: "sections",
     queryFn: getSections
   });
 
+  // Récupération des statuts
   const { data: statusData, isLoading: isLoadingStatuses, error: errorStatuses } = useQuery({
     queryKey: "statuses",
     queryFn: getStatuses
-});
+  });
 
   // Récupération des données du contenu
   useQuery({
-    queryKey: ["content", idContent], 
+    queryKey: ["content", idContent],
     queryFn: () => getContentById(idContent),
-
     onSuccess: (data) => {
       if (data) {
-        setContent(data.content);
-        setContentSection(data.section_id);
-        setContentStatus(data.status_id);
+        setContent(data.content || "");
+        setContentSection(data.section_id || "");
+        setContentStatus(data.status_id || "");
       }
     },
-
     onError: (error) => {
-      toast.error(error.message);
+      toast.error(error.message);  // Message d'erreur en rouge si échec
     }
   });
 
   // Mutation pour mettre à jour le contenu
   const mutation = useMutation(updateContent, {
-
-    onSuccess: (data) => { // 'data' contient la réponse du serveur
+    onSuccess: (data) => {
       queryClient.invalidateQueries("contents");
-      toast.success(data.message || "Contenu mis à jour avec succès!");
+      // Vérifier si la réponse du serveur contient un message d'erreur ou de succès
+      if (data.success) {
+        toast.success(data.message || "Contenu mis à jour avec succès!");  // Message de succès
+      } else {
+        toast.error(data.message || "Erreur lors de la mise à jour du contenu!");  // Message d'erreur
+      }
     },
     onError: (error) => {
-      toast.error(error.message);
+      toast.error(error.message);  // Message d'erreur en rouge
     }
   });
 
+  // Gestion du formulaire de mise à jour
   const handleSubmit = (e) => {
     e.preventDefault();
     mutation.mutate({
@@ -67,8 +73,8 @@ const UpdateContent = () => {
 
   if (isLoadingSections || isLoadingStatuses) return <p>Chargement...</p>;
 
-  if (errorSections) return <p>Une erreur sest produite en récupérant les sections : {errorSections.message}</p>;
-  if (errorStatuses) return <p>Une erreur sest produite en récupérant les statuts : {errorStatuses.message}</p>;
+  if (errorSections) return <p>Une erreur s&lsquo;est produite en récupérant les sections : {errorSections.message}</p>;
+  if (errorStatuses) return <p>Une erreur s&lsquo;est produite en récupérant les statuts : {errorStatuses.message}</p>;
 
   return (
     <div>
@@ -92,7 +98,7 @@ const UpdateContent = () => {
           onChange={(e) => setContentSection(e.target.value)}
           required
         >
-          {sectionData.map((section) => (
+          {sectionData && sectionData.map((section) => (
             <option key={section.id} value={section.id}>
               {section.name}
             </option>
@@ -107,7 +113,7 @@ const UpdateContent = () => {
           onChange={(e) => setContentStatus(e.target.value)}
           required
         >
-          {statusData.map((status) => (
+          {statusData && statusData.map((status) => (
             <option key={status.id} value={status.id}>
               {status.name}
             </option>

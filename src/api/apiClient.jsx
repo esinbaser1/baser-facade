@@ -21,7 +21,6 @@ apiClient.interceptors.request.use(
     if (!config.headers['Content-Type']) {
       config.headers['Content-Type'] = 'application/json';
     }
-
     return config;
   },
   (error) => {

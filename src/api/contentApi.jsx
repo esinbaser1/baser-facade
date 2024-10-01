@@ -25,12 +25,7 @@ export const updateContent = async (updatedContent) => {
 };
 
 // Supprimer du contenu
-
 export const deleteContent = async (id) => {
   const response = await apiClient.post("deleteContent", { id });
   return response.data;
 };
-
-
-
-// Archiver du contenu
