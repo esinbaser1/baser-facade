@@ -16,7 +16,7 @@ const DisplayContent = () => {
 
     return (
         <div>
-            <h2>Afficher du contenu</h2>
+            <h2>Liste des contenus</h2>
             <table>
                 <thead>
                     <tr>

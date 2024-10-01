@@ -4,7 +4,7 @@ const AdminNavigation = () => {
     return (
         <div>
             <NavLink to="/gestionContenu">Gestion du contenu</NavLink>
-            <NavLink to="">Gestion des images</NavLink>
+            <NavLink to="/gestionImage">Gestion des images</NavLink>
             <NavLink to="">Gestion des réseaux sociaux</NavLink>
             <NavLink to="">Gestion des informations de contact</NavLink>
             <NavLink to="">Messages reçus</NavLink>

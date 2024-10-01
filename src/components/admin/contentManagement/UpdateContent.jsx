@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useParams } from "react-router-dom";
-import { getContentById, updateContent, getSections, getStatuses} from "../../../api/contentApi";
+import { getContentById, updateContent} from "../../../api/contentApi";
+import { getStatuses } from '../../../api/statusApi';
+import { getSections } from '../../../api/sectionApi';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 

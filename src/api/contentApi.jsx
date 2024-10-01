@@ -12,18 +12,6 @@ export const addContent = async (newContent) => {
   return response.data;
 };
 
-// Récupérer les sections
-export const getSections = async () => {
-  const response = await apiClient.get("section");
-  return response.data.sections || [];
-};
-
-// Récupérer les statuts
-export const getStatuses = async () => {
-  const response = await apiClient.get("status");
-  return response.data.statuses || [];
-};
-
 // Récupérer un contenu par ID
 export const getContentById = async (id) => {
   const response = await apiClient.get(`contentById/${id}`);

@@ -12,6 +12,7 @@ import UpdateContent from "./components/admin/contentManagement/UpdateContent";
 import { AuthContext } from "./context/AuthContext";
 import { setupInterceptors } from "./api/apiClient"; 
 import ProtectedRoutes from "./components/ProtectedRoutes";
+import ImageManager from "./components/admin/imageManagement/ImageManager";
 
 const App = () => {
   const { logout } = useContext(AuthContext); 
@@ -34,9 +35,13 @@ const App = () => {
 
 
           <Route path="/admin" element={<ProtectedRoutes><Admin/></ProtectedRoutes>} />
-          {/* <Route path="/admin" element={<Admin/>} /> */}
           <Route path="/gestionContenu" element={<ProtectedRoutes><ContentManager/></ProtectedRoutes>}/>
           <Route path="/modifierContenu/:idContent" element={<ProtectedRoutes><UpdateContent/></ProtectedRoutes>} />
+          <Route path="/gestionImage" element={<ProtectedRoutes><ImageManager/></ProtectedRoutes>} />
+          {/* <Route path="/gestionImage" element={<ImageManager/>} /> */}
+          {/* <Route path="/admin" element={<Admin/>} /> */}
+          {/* <Route path="/gestionContenu" element={<ContentManager/>}/> */}
+          {/* <Route path="/modifierContenu/:idContent" element={<UpdateContent/>} /> */}
 
         </Routes>
 

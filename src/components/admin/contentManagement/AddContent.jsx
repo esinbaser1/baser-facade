@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { addContent, getSections, getStatuses } from '../../../api/contentApi';
+import { addContent } from '../../../api/contentApi';
+import { getStatuses } from '../../../api/statusApi';
+import { getSections } from '../../../api/sectionApi';
 
 const AddContent = () => {
   const [content, setContent] = useState("");
@@ -25,14 +27,18 @@ const AddContent = () => {
   // Mutation pour ajouter du contenu
   const mutation = useMutation(addContent, {
     onSuccess: (data) => {
+      if(data.success) {
       queryClient.invalidateQueries('contents');
       setContent("");
       setContentSection("");
       setContentStatus("");
       toast.success(data.message || "Contenu ajouté avec succès!");
-    },
+    } else {
+      toast.error(data.message || "Une erreur est survenue.");
+    }
+  },
     onError: (error) => {
-      toast.error(error.message);
+      toast.error("Erreur de serveur : " + error.message);
     }
   });
 

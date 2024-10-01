@@ -23,8 +23,6 @@ const Navigation = () => {
     console.log("Changement d'état d'auth: ", auth);
   }, [auth]); // Cet effet sera appelé à chaque fois que auth change
 
-  
-
   return (
     <header>
       <nav>
