@@ -24,7 +24,7 @@ const UpdateImage = () => {
     {
       onSuccess: (data) => {
         if (data) {
-          setImageName(data.name || "");  // Pré-remplir les champs si les données existent
+          setImageName(data.name || "");
           setImageSection(data.section_id || "");
         }
       },
@@ -35,10 +35,10 @@ const UpdateImage = () => {
   );
 
   // Mutation pour la mise à jour de l'image
-  const mutation = useMutation(updateImage, {
+  const mutation = useMutation({
+    mutationFn: updateImage,
     onSuccess: (data) => {
       queryClient.invalidateQueries('images');  // Invalider le cache pour forcer le rechargement
-      
       // Vérifier si la réponse n'indique pas une erreur comme "Aucun changement détecté"
       if (data.success) {
         toast.success(data.message);  // Message de succès

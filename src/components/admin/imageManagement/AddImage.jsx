@@ -29,7 +29,8 @@ const AddImage = () => {
     }
   });
 
-  const mutation = useMutation(addImage, {
+  const mutation = useMutation({
+    mutationFn:addImage, 
     onSuccess: (data) => {
       if (data.success) {
         queryClient.invalidateQueries("images");
@@ -76,7 +77,6 @@ const AddImage = () => {
           id="imageName"
           value={imageName}
           onChange={(e) => setImageName(e.target.value)}
-          required
         />
 
         <label htmlFor="imageSection">Section</label>
@@ -85,7 +85,6 @@ const AddImage = () => {
           name="imageSection"
           value={imageSection}
           onChange={(e) => setImageSection(e.target.value)}
-          required
         >
           {sectionData &&
             sectionData.map((section) => (
@@ -102,7 +101,6 @@ const AddImage = () => {
           name="path"
           ref={fileInputRef}
           onChange={(e) => setImage(e.target.files[0])}
-          required
         />
         <button type="submit">Ajouter</button>
       </form>

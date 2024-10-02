@@ -15,7 +15,7 @@ export const addContent = async (newContent) => {
 // Récupérer un contenu par ID
 export const getContentById = async (id) => {
   const response = await apiClient.get(`contentById/${id}`);
-  return response.data.contents;
+  return response.data.content;
 };
 
 // Mettre à jour un contenu

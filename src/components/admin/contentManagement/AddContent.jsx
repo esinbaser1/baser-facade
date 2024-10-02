@@ -36,7 +36,8 @@ const AddContent = () => {
 });
 
   // Mutation pour ajouter du contenu
-  const mutation = useMutation(addContent, {
+  const mutation = useMutation({
+    mutationFn: addContent, 
     onSuccess: (data) => {
       if(data.success) {
       queryClient.invalidateQueries('contents');

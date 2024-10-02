@@ -16,7 +16,7 @@ export const addImage = async (formData) => {
 
 export const getImageById = async (id) => {
   const response = await apiClient.get(`imageById/${id}`); 
-  return response.data.images;
+  return response.data.image;
 };
 
 export const updateImage = async (updatedImage) => {

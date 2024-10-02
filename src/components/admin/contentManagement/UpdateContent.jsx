@@ -10,11 +10,12 @@ import "react-toastify/dist/ReactToastify.css";
 const UpdateContent = () => {
   
   const { idContent } = useParams();
-  const queryClient = useQueryClient();
-
+  
   const [content, setContent] = useState("");
   const [contentSection, setContentSection] = useState("");
   const [contentStatus, setContentStatus] = useState("");
+  
+  const queryClient = useQueryClient();
 
   // Récupération des sections
   const { data: sectionData, isLoading: isLoadingSections, error: errorSections } = useQuery({
@@ -40,12 +41,13 @@ const UpdateContent = () => {
       }
     },
     onError: (error) => {
-      toast.error(error.message);  // Message d'erreur en rouge si échec
+      toast.error(error.message); 
     }
   });
 
   // Mutation pour mettre à jour le contenu
-  const mutation = useMutation(updateContent, {
+  const mutation = useMutation({
+    mutationFn: updateContent,
     onSuccess: (data) => {
       queryClient.invalidateQueries("contents");
       // Vérifier si la réponse du serveur contient un message d'erreur ou de succès

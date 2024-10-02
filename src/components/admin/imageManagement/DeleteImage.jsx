@@ -5,7 +5,8 @@ import { deleteImage } from '../../../api/imageApi';
 const DeleteImage = ({ imageId }) => {
   const queryClient = useQueryClient();
 
-  const mutation = useMutation(deleteImage, {
+  const mutation = useMutation({
+    mutationFn: deleteImage,
     onSuccess: (data) => {
       if(data.success) {
         toast.success(data.message || "Image supprimée avec succès.");

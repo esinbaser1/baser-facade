@@ -14,6 +14,8 @@ import { setupInterceptors } from "./api/apiClient";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import ImageManager from "./components/admin/imageManagement/ImageManager";
 import UpdateImage from "./components/admin/imageManagement/UpdateImage";
+import SocialNetworkManager from "./components/admin/socialNetworkManagement/SocialNetworkManager";
+import UpdateSocialNetwork from "./components/admin/socialNetworkManagement/UpdateSocialNetwork";
 
 const App = () => {
   const { logout } = useContext(AuthContext); 
@@ -40,6 +42,8 @@ const App = () => {
           <Route path="/modifierContenu/:idContent" element={<ProtectedRoutes><UpdateContent/></ProtectedRoutes>} />
           <Route path="/modifierImage/:idImage" element={<ProtectedRoutes><UpdateImage/></ProtectedRoutes>} />
           <Route path="/gestionImage" element={<ProtectedRoutes><ImageManager/></ProtectedRoutes>} />
+          <Route path="/gestionReseauSocial" element={<ProtectedRoutes><SocialNetworkManager/></ProtectedRoutes>} />
+          <Route path="/modifierReseauSocial/:idSocialNetwork" element={<ProtectedRoutes><UpdateSocialNetwork/></ProtectedRoutes>} />
           {/* <Route path="/gestionImage" element={<ImageManager/>} /> */}
           {/* <Route path="/admin" element={<Admin/>} /> */}
           {/* <Route path="/gestionContenu" element={<ContentManager/>}/> */}

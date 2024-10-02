@@ -5,7 +5,8 @@ import { deleteContent } from '../../../api/contentApi';
 const DeleteContent = ({ contentId }) => {
   const queryClient = useQueryClient();
 
-  const mutation = useMutation(deleteContent, {
+  const mutation = useMutation({
+    mutationFn: deleteContent,
     onSuccess: (data) => {
       if(data.success) {
         toast.success(data.message || "Contenu supprimé avec succès!");

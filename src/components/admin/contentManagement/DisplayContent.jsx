@@ -34,7 +34,7 @@ const DisplayContent = () => {
                     ) : (
                         <tr>
                             <td colSpan="5" style={{ textAlign: "center" }} role="alert">
-                                Il ny a pas de contenu.
+                                Il n&lsquo;y a pas de contenu.
                             </td>
                         </tr>
                     )}
