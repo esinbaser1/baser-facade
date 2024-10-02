@@ -21,6 +21,12 @@ const AddImage = () => {
   } = useQuery({
     queryKey: "sections",
     queryFn: getSections,
+    onSuccess: (data) => {
+      if (data && data.length > 0) {
+        // Initialiser la première section par défaut
+        setImageSection(data[0].id);
+      }
+    }
   });
 
   const mutation = useMutation(addImage, {
@@ -28,10 +34,11 @@ const AddImage = () => {
       if (data.success) {
         queryClient.invalidateQueries("images");
         setImageName("");
-        setImageSection("");
+        setImageSection(sectionData[0].id || ""); // Remettre à la première section
         setImage(null);
         fileInputRef.current.value = "";
-        toast.success(data.message || "Contenu ajouté avec succès!");
+        toast.success(data.message
+        );
       } else {
         toast.error(data.message || "Une erreur est survenue.");
       }
@@ -55,14 +62,14 @@ const AddImage = () => {
   if (isLoadingSections) return <p>Chargement...</p>;
   if (errorSections)
     return (
-      <p>Une erreur sest produite lors de la récupération des sections.</p>
+      <p>Une erreur s&lsquo;est produite lors de la récupération des sections.</p>
     );
 
   return (
     <div>
       <h2>Ajouter des images</h2>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="imageName">Nom de l&apos;image</label>
+        <label htmlFor="imageName">Nom de l&lsquo;image</label>
         <input
           type="text"
           name="imageName"
@@ -80,7 +87,6 @@ const AddImage = () => {
           onChange={(e) => setImageSection(e.target.value)}
           required
         >
-          <option value="">Sélectionnez une section</option>
           {sectionData &&
             sectionData.map((section) => (
               <option key={section.id} value={section.id}>

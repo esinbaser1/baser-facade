@@ -6,12 +6,16 @@ const DeleteContent = ({ contentId }) => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation(deleteContent, {
-    onSuccess: () => {
-      toast.success("Contenu supprimé avec succès.");
-      queryClient.invalidateQueries('contents'); // Invalider et refetch les contenus après suppression
+    onSuccess: (data) => {
+      if(data.success) {
+        toast.success(data.message || "Contenu supprimé avec succès!");
+        queryClient.invalidateQueries('contents'); // Invalider et refetch les contenus après suppression
+      } else {
+        toast.error(data.message || "Une erreur est survenue.");
+      }
     },
     onError: (error) => {
-      toast.error(`Erreur lors de la suppression : ${error.message}`);
+      toast.error("Erreur de serveur : " + error.message);
     }
   });
 

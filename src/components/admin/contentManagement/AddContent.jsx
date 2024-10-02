@@ -16,12 +16,23 @@ const AddContent = () => {
   // Utilisation de useQuery pour récupérer les sections et les statuts
   const { data: sectionData, isLoading: isLoadingSections, error: errorSections } = useQuery({
     queryKey: "sections",
-    queryFn: getSections
+    queryFn: getSections,
+    onSuccess: (data) => {
+      if(data && data.length > 0) {
+        // Initialiser la première section par défaut
+        setContentSection(data[0].id)
+      }
+    }
   });
 
   const { data: statusData, isLoading: isLoadingStatuses, error: errorStatuses } = useQuery({
     queryKey: "statuses",
-    queryFn: getStatuses
+    queryFn: getStatuses,
+    onSuccess: (data) => {
+      if(data && data.length > 0) {
+        setContentStatus(data[0].id);
+      }
+    }
 });
 
   // Mutation pour ajouter du contenu
@@ -30,8 +41,8 @@ const AddContent = () => {
       if(data.success) {
       queryClient.invalidateQueries('contents');
       setContent("");
-      setContentSection("");
-      setContentStatus("");
+      setContentSection(sectionData[0].id || "");
+      setContentStatus(statusData[0].id || "");
       toast.success(data.message || "Contenu ajouté avec succès!");
     } else {
       toast.error(data.message || "Une erreur est survenue.");
@@ -73,7 +84,6 @@ const AddContent = () => {
           onChange={(e) => setContentSection(e.target.value)}
           required
         >
-          <option value="">Sélectionnez une section</option>
           {sectionData && sectionData.map((section) => (
             <option key={section.id} value={section.id}>
               {section.name}
@@ -89,7 +99,6 @@ const AddContent = () => {
           onChange={(e) => setContentStatus(e.target.value)}
           required
         >
-          <option value="">Sélectionnez un statut</option>
           {statusData && statusData.map((status) => (
             <option key={status.id} value={status.id}>
               {status.name}

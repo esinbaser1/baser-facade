@@ -6,12 +6,16 @@ const DeleteImage = ({ imageId }) => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation(deleteImage, {
-    onSuccess: () => {
-      toast.success("Image supprimé avec succès.");
-      queryClient.invalidateQueries('images');
+    onSuccess: (data) => {
+      if(data.success) {
+        toast.success(data.message || "Image supprimée avec succès.");
+        queryClient.invalidateQueries('images');
+      } else {
+        toast.error(data.message || "Une erreur est survenue.")
+      }
     },
     onError: (error) => {
-      toast.error(`Erreur lors de la suppression : ${error.message}`);
+      toast.error("Erreur de serveur : " + error.message);
     }
   });
 
