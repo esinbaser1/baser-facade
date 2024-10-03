@@ -64,7 +64,7 @@ const AddContent = () => {
   if (errorSections) return <p>Une erreur sest produite lors de la récupération des sections.</p>;
 
   return (
-    <div>
+    <>
       <h2>Ajouter du contenu</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="content">Contenu</label>
@@ -110,7 +110,7 @@ const AddContent = () => {
         <button type="submit" disabled={mutation.isLoading}>Ajouter</button>
       </form>
       <ToastContainer />
-    </div>
+    </>
   );
 };
 

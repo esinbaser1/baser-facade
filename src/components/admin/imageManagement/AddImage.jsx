@@ -19,12 +19,11 @@ const AddImage = () => {
     isLoading: isLoadingSections,
     error: errorSections,
   } = useQuery({
-    queryKey: "sections",
+    queryKey: ["sections"],
     queryFn: getSections,
     onSuccess: (data) => {
-      if (data && data.length > 0) {
-        // Initialiser la première section par défaut
-        setImageSection(data[0].id);
+      if (data && data.length > 0) { 
+        setImageSection(data[0].id); //  // Initialiser la première section par défaut
       }
     }
   });

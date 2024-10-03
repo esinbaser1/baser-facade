@@ -1,18 +1,18 @@
 import { useMutation, useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
-import { deleteContent } from '../../../api/contentApi';
+import { deleteContact } from '../../../api/contactApi';
 
-const DeleteContent = ({ contentId }) => {
+const DeleteContact = ( {contactId} ) => {
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
-    mutationFn: deleteContent,
+    mutationFn: deleteContact,
     onSuccess: (data) => {
       if(data.success) {
-        toast.success(data.message || "Contenu supprimé avec succès!");
-        queryClient.invalidateQueries('contents'); 
+        toast.success(data.message);
+        queryClient.invalidateQueries('');
       } else {
-        toast.error(data.message || "Une erreur est survenue.");
+        toast.error(data.message);
       }
     },
     onError: (error) => {
@@ -21,9 +21,9 @@ const DeleteContent = ({ contentId }) => {
   });
 
   const handleDeleteClick = () => {
-    const confirmed = window.confirm("Êtes-vous sûr de vouloir supprimer ce contenu ?");
+    const confirmed = window.confirm("Êtes-vous sûr de vouloir supprimer ce message ?");
     if (confirmed) {
-      mutation.mutate(contentId);
+      mutation.mutate(contactId);
     }
   };
 
@@ -34,4 +34,4 @@ const DeleteContent = ({ contentId }) => {
   );
 };
 
-export default DeleteContent;
+export default DeleteContact;

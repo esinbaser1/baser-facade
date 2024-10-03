@@ -50,11 +50,10 @@ const UpdateContent = () => {
     mutationFn: updateContent,
     onSuccess: (data) => {
       queryClient.invalidateQueries("contents");
-      // Vérifier si la réponse du serveur contient un message d'erreur ou de succès
       if (data.success) {
-        toast.success(data.message || "Contenu mis à jour avec succès!");  // Message de succès
+        toast.success(data.message || "Contenu mis à jour avec succès!"); 
       } else {
-        toast.error(data.message || "Erreur lors de la mise à jour du contenu!");  // Message d'erreur
+        toast.error(data.message || "Erreur lors de la mise à jour du contenu!");
       }
     },
     onError: (error) => {

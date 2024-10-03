@@ -16,6 +16,9 @@ import ImageManager from "./components/admin/imageManagement/ImageManager";
 import UpdateImage from "./components/admin/imageManagement/UpdateImage";
 import SocialNetworkManager from "./components/admin/socialNetworkManagement/SocialNetworkManager";
 import UpdateSocialNetwork from "./components/admin/socialNetworkManagement/UpdateSocialNetwork";
+import InformationContactManager from "./components/admin/informationContactManagement/InformationContactManager";
+import UpdateInformationContact from "./components/admin/informationContactManagement/UpdateInformationContact";
+import ContactManager from "./components/admin/contactManagement/ContactManager";
 
 const App = () => {
   const { logout } = useContext(AuthContext); 
@@ -43,7 +46,11 @@ const App = () => {
           <Route path="/modifierImage/:idImage" element={<ProtectedRoutes><UpdateImage/></ProtectedRoutes>} />
           <Route path="/gestionImage" element={<ProtectedRoutes><ImageManager/></ProtectedRoutes>} />
           <Route path="/gestionReseauSocial" element={<ProtectedRoutes><SocialNetworkManager/></ProtectedRoutes>} />
+          <Route path="/gestionInformationContact" element={<ProtectedRoutes><InformationContactManager/></ProtectedRoutes>} />
+          <Route path="/gestionContact" element={<ProtectedRoutes><ContactManager/></ProtectedRoutes>} />
           <Route path="/modifierReseauSocial/:idSocialNetwork" element={<ProtectedRoutes><UpdateSocialNetwork/></ProtectedRoutes>} />
+          <Route path="/modifierInformation/:idInformation" element={<ProtectedRoutes><UpdateInformationContact/></ProtectedRoutes>} />
+
           {/* <Route path="/gestionImage" element={<ImageManager/>} /> */}
           {/* <Route path="/admin" element={<Admin/>} /> */}
           {/* <Route path="/gestionContenu" element={<ContentManager/>}/> */}

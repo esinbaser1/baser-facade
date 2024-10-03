@@ -15,7 +15,7 @@ const DisplayContent = () => {
     const contentList = data && data.content ? data.content : [];
 
     return (
-        <div>
+        <>
             <h2>Liste des contenus</h2>
             <table>
                 <thead>
@@ -40,7 +40,7 @@ const DisplayContent = () => {
                     )}
                 </tbody>
             </table>
-        </div>
+        </>
     );
 };
 

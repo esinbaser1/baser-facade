@@ -6,16 +6,16 @@ export const getContent = async () => {
   return response.data;
 };
 
-// Ajouter du contenu
-export const addContent = async (newContent) => {
-  const response = await apiClient.post("addContent", newContent);
-  return response.data;
-};
-
 // Récupérer un contenu par ID
 export const getContentById = async (id) => {
   const response = await apiClient.get(`contentById/${id}`);
   return response.data.content;
+};
+
+// Ajouter du contenu
+export const addContent = async (newContent) => {
+  const response = await apiClient.post("addContent", newContent);
+  return response.data;
 };
 
 // Mettre à jour un contenu
