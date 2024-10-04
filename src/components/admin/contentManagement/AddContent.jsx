@@ -35,7 +35,7 @@ const AddContent = () => {
     }
 });
 
-  // Mutation pour ajouter du contenu
+ 
   const mutation = useMutation({
     mutationFn: addContent, 
     onSuccess: (data) => {

@@ -16,11 +16,11 @@ const ContactUs = () => {
   const queryClient = useQueryClient();
 
   const { isLoading, error, data } = useQuery({
-    queryKey: ["test"],
+    queryKey: ["contactTypeOfProject"],
     queryFn: getContactTypeOfProject,
     onSuccess: (data) => {
       if (data && data.length > 0) {
-        setTypeOfProject(data[0].id); // Définit le premier type de projet comme sélectionné par défaut
+        setTypeOfProject(data[0].id); 
       }
     },
   });
@@ -30,7 +30,7 @@ const ContactUs = () => {
     mutationFn: addContact,
     onSuccess: (data) => {
       if (data.success) {
-        queryClient.invalidateQueries("test");
+        queryClient.invalidateQueries('contact');
         setFirstname('');
         setLastname('');
         setEmail('');

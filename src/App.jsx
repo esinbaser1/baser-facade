@@ -1,5 +1,7 @@
 import { useContext, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Navigation from "./components/Navigation";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
@@ -59,6 +61,7 @@ const App = () => {
         </Routes>
 
       </BrowserRouter>
+      <ToastContainer/>
     </div>
   );
 };

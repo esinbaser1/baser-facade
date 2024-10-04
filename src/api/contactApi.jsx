@@ -20,7 +20,17 @@ export const addContact = async (newContact) => {
   return response.data;
 }
 
+export const archiveContact = async (id) => {
+  const response = await apiClient.post('archiveContact', { id });
+  return response.data;
+};
+
 export const deleteContact = async (id) => {
   const response = await apiClient.post('deleteContact', { id });
   return response.data;
 }
+
+export const replyContact = async (replyData) => {
+  const response = await apiClient.post('replyContact', replyData);
+  return response.data;
+};

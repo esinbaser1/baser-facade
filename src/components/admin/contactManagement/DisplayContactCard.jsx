@@ -1,58 +1,92 @@
 import { useState } from "react";
 import DeleteContact from "./DeleteContact";
+import ContactReplyModal from "./ContactReplyModal";
+import ArchiveContact from "./ArchiveContact";
 
-const DisplayContactCard = ({ contact, showDetails, setShowDetails }) => {
-
-  const [selectedContactId, setSelectedContactId] = useState(null); // stocke l'ID du contact qui est actuellement sélectionné.
+const DisplayContactCard = ({ contact }) => {
+  const [selectedContactId, setSelectedContactId] = useState(null);
+  const [replyModalOpen, setReplyModalOpen] = useState(false); // état pour la modale de réponse
 
   const handleViewClick = () => {
-    // si le bouton voir est cliqué :
     if (selectedContactId === contact.id) {
-      //  réinitialise l'ID du contact 
-      setSelectedContactId(null);
-      // les détails ne doivent plus être visibles
-      setShowDetails(false);
-
-      // si le bouton voir n'est pas encore cliqué :
+      setSelectedContactId(null); // Si on re-clique, on cache les détails
     } else {
-      // indique que ce contact est maintenant sélectionné
-      setSelectedContactId(contact.id);
-      // affiche les colonnes supplémentaires
-      setShowDetails(true);
+      setSelectedContactId(contact.id); // On affiche les détails de ce contact
     }
   };
 
-  return (
-    <tr>
-      <td>{contact.email}</td>
-      <td>{contact.message}</td>
-      <td>{contact.sending_date}</td>
-      <td>{contact.status_name}</td>
+  const handleReplyClick = () => {
+    setReplyModalOpen((prevState) => !prevState); 
+  };
 
-      {showDetails && selectedContactId === contact.id && (
-        <>
-          <td>{contact.lastname}</td>
-          <td>{contact.firstname}</td>
-          <td>{contact.mobile}</td>
-          <td>{contact.city}</td>
-          <td>{contact.project_name}</td>
-        </>
+  // fonction pour tronquer le message à 25 caractères
+  const getTruncatedMessage = (message, length = 25) => {
+    if (message.length > length) {
+      return message.substring(0, length) + "...";
+    }
+    return message;
+  };
+
+  return (
+    <>
+      <tr>
+        <td>{contact.email}</td>
+        <td className="message-cell">
+          {selectedContactId === contact.id
+            ? contact.message
+            : getTruncatedMessage(contact.message)}
+        </td>
+        <td>{contact.sending_date}</td>
+        <td>{contact.status_name}</td>
+
+        <td>
+          {selectedContactId === contact.id ? (
+            <>
+              <button onClick={handleReplyClick}>
+                {replyModalOpen ? "Fermer la modale" : "Répondre"}
+              </button>
+              <button onClick={handleViewClick}>Cacher</button>
+              <ArchiveContact contactId={contact.id} />
+              <DeleteContact contactId={contact.id} />
+            </>
+          ) : (
+            <>
+              <button onClick={handleViewClick}>Voir</button>
+              <DeleteContact contactId={contact.id} />
+            </>
+          )}
+        </td>
+      </tr>
+      {selectedContactId === contact.id && (
+        <tr>
+          <td colSpan="5">
+            <div className="contact-details">
+              <p>
+                <strong>Nom :</strong> {contact.lastname}
+              </p>
+              <p>
+                <strong>Prénom :</strong> {contact.firstname}
+              </p>
+              <p>
+                <strong>Téléphone :</strong> {contact.mobile}
+              </p>
+              <p>
+                <strong>Ville :</strong> {contact.city}
+              </p>
+              <p>
+                <strong>Projet :</strong> {contact.project_name}
+              </p>
+            </div>
+          </td>
+        </tr>
       )}
 
-      <td>
-        {selectedContactId === contact.id ? (
-          <>
-            <button>Répondre</button>
-            <DeleteContact contactId={contact.id}/>
-          </>
-        ) : (
-          <>
-            <button onClick={handleViewClick}>Voir</button>
-            <DeleteContact contactId={contact.id}/>
-          </>
-        )}
-      </td>
-    </tr>
+      <ContactReplyModal
+        isOpen={replyModalOpen}
+        onClose={handleReplyClick}
+        contact={contact}
+      />
+    </>
   );
 };
 
