@@ -52,7 +52,7 @@ const DisplayContact = () => {
           ) : (
             <tr>
               <td colSpan="10" style={{ textAlign: "center" }} role="alert">
-                Il n&apos;y a pas de contenu.
+                Il n&apos;y a pas de message.
               </td>
             </tr>
           )}

@@ -15,6 +15,7 @@ const ContactReplyModal = ({ isOpen, onClose, contact }) => {
       if (data && data.message) {
         toast.success(data.message);
         queryClient.invalidateQueries('contact');
+        setMessage('');
       } else {
         toast.error("Le serveur n'a pas retourné de message de succès.");
       }

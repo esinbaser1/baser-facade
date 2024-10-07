@@ -29,3 +29,9 @@ export const deleteContent = async (id) => {
   const response = await apiClient.post("deleteContent", { id });
   return response.data;
 };
+
+// Archiver du contenu
+export const archiveContent = async (id) => {
+  const response = await apiClient.post("archiveContent", { id });
+  return response.data;
+};

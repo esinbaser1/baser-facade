@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import DeleteContent from "./DeleteContent";
+import ArchiveContent from "./ArchiveContent";
 
 const DisplayContentCard = ({ content }) => {
   const navigate = useNavigate();
@@ -17,11 +18,13 @@ const DisplayContentCard = ({ content }) => {
         <button onClick={handleEditClick}>Modifier</button>
       </td>
       <td>
-      <DeleteContent contentId={content.id} />
+        <DeleteContent contentId={content.id} />
+      </td>
+      <td>
+        {!content.is_archived && <ArchiveContent contentId={content.id} />}
       </td>
     </tr>
   );
 };
-
 
 export default DisplayContentCard;
