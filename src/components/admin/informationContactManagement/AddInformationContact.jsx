@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 import { addInformationContact } from '../../../api/informationContactApi';
 
 const AddinformationContact = () => {
@@ -69,7 +68,6 @@ const AddinformationContact = () => {
 
       <button type="submit" disabled={mutation.isLoading}>Ajouter</button>
     </form>
-    <ToastContainer />
   </>
   );
 };

@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 import { addContent } from '../../../api/contentApi';
 import { getStatuses } from '../../../api/statusApi';
 import { getSections } from '../../../api/sectionApi';
@@ -35,7 +34,6 @@ const AddContent = () => {
     }
 });
 
- 
   const mutation = useMutation({
     mutationFn: addContent, 
     onSuccess: (data) => {
@@ -68,14 +66,13 @@ const AddContent = () => {
       <h2>Ajouter du contenu</h2>
       <form onSubmit={handleSubmit}>
         <label htmlFor="content">Contenu</label>
-        <input
+        <textarea
           type="text"
           name="content"
           value={content}
           id="content"
           onChange={(e) => setContent(e.target.value)}
-          required
-        />
+        ></textarea>
 
         <label htmlFor="contentSection">Section</label>
         <select
@@ -83,7 +80,6 @@ const AddContent = () => {
           name="contentSection"
           value={contentSection}
           onChange={(e) => setContentSection(e.target.value)}
-          required
         >
           {sectionData && sectionData.map((section) => (
             <option key={section.id} value={section.id}>
@@ -98,7 +94,6 @@ const AddContent = () => {
           name="contentStatus"
           value={contentStatus}
           onChange={(e) => setContentStatus(e.target.value)}
-          required
         >
           {statusData && statusData.map((status) => (
             <option key={status.id} value={status.id}>
@@ -109,7 +104,6 @@ const AddContent = () => {
 
         <button type="submit" disabled={mutation.isLoading}>Ajouter</button>
       </form>
-      <ToastContainer />
     </>
   );
 };

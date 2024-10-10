@@ -11,7 +11,7 @@ const DisplayInformationContact = () => {
   if (isLoading) return "Chargement...";
   if (error) return "Une erreur s'est produite: " + error.message;
 
-  const informationList = data && data.information ? data.information : [];
+  const informationList = data?.information ?? [];
 
   return (
     <>

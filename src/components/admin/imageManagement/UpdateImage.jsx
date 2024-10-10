@@ -3,8 +3,7 @@ import { useParams } from "react-router-dom";
 import { getSections } from '../../../api/sectionApi';
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getImageById, updateImage } from "../../../api/imageApi";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 const UpdateImage = () => {
   const { idImage } = useParams();  // Récupère l'ID de l'image depuis l'URL
@@ -92,7 +91,6 @@ const UpdateImage = () => {
           onChange={(e) => setImageSection(e.target.value)}
           required
         >
-          <option value="">Sélectionnez une section</option>
           {sectionData && sectionData.map((section) => (
             <option key={section.id} value={section.id}>
               {section.name}
@@ -105,11 +103,10 @@ const UpdateImage = () => {
           type="file"
           id="path"
           name="path"
-          onChange={(e) => setImage(e.target.files[0])}  // Gérer la sélection de fichier image
+          onChange={(e) => setImage(e.target.files[0])}  
         />
         <button type="submit">Mettre à jour</button>
       </form>
-      <ToastContainer />  {/* Conteneur pour les notifications */}
     </div>
   );
 };

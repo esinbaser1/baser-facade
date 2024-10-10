@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import App from './App.jsx';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { AuthProvider } from './context/AuthContext.jsx';
-import "./assets/styles/test.css";
+import "./assets/styles/index.scss";
 
 const queryClient = new QueryClient();
 

@@ -2,8 +2,7 @@ import { useState, useRef } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getSections } from '../../../api/sectionApi';
 import { addImage } from "../../../api/imageApi";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 const AddImage = () => {
   const [imageName, setImageName] = useState("");
@@ -23,7 +22,7 @@ const AddImage = () => {
     queryFn: getSections,
     onSuccess: (data) => {
       if (data && data.length > 0) { 
-        setImageSection(data[0].id); //  // Initialiser la première section par défaut
+        setImageSection(data[0].id); // Initialiser la première section par défaut
       }
     }
   });
@@ -103,8 +102,6 @@ const AddImage = () => {
         />
         <button type="submit">Ajouter</button>
       </form>
-
-      <ToastContainer />
     </div>
   );
 };

@@ -1,0 +1,33 @@
+@mixin buttonSquare($color, $bc) {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    text-align: center;
+    border-radius: 4px;
+    color: $color;
+    background-color: $bc;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  
+    &:hover {
+      background-color: lighten($bc, 4%);
+    }
+}
+
+
+@mixin line($w, $bc) {
+    width: 0;
+    height: 2px;
+    background-color: $bc;
+    margin-bottom: 1.5rem;
+    border-radius: 4px;
+    animation: expand-width-#{$w} 1s ease-out forwards;
+  
+    @keyframes expand-width-#{$w} {
+      from {
+        width: 0;
+      }
+      to {
+        width: #{$w}px;
+      }
+    }
+  }

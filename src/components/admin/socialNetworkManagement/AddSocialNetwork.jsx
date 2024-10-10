@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { addSocialNetwork } from "../../../api/socialNetworkApi";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 const AddSocialNetwork = () => {
 
   const [platform, setPlatform] = useState("");
@@ -43,7 +42,6 @@ const AddSocialNetwork = () => {
 
         <button type="submit">Ajouter</button>
       </form>
-      <ToastContainer/>
     </>
   );
 };

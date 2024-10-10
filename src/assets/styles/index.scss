@@ -1,0 +1,16 @@
+// Global
+@import "./components/color";
+@import "./components/mixin";
+@import "./components/global";
+
+// Pages
+@import "./pages/home";
+@import "./pages/our-services";
+@import "./pages/our-realisations";
+@import "./pages/contact-us";
+
+// Components
+@import "./components/font";
+@import "./components/navigation";
+@import "./components/footer";
+@import "./components/admin-navigation";

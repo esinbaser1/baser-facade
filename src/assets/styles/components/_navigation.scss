@@ -1,0 +1,79 @@
+.navigation {
+    padding: 1.1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $main-color;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 20;
+  
+    .logo {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color:white
+    }
+  
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+  
+      a, button {
+        color: white;
+        text-decoration: none;
+      }
+    }
+  
+    button {
+      color: white;
+    }
+  
+    // Menu burger bouton
+    .burger-menu {
+      display: none;
+      font-size: 2.5rem;
+      background: none;
+      border: none;
+      color: white;
+      cursor: pointer;
+
+    }
+  
+    // Media queries pour les écrans de 480px et moins
+    @media (max-width: 812px) {
+      .burger-menu {
+        display: block; // Affiche le bouton burger
+      }
+  
+      nav {
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: $main-color;
+        border-bottom: 1px solid rgb(202, 202, 202);
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        padding: 0.4rem 1.5rem;
+        display: none;
+  
+        &.open {
+          display: flex; // Affiche le menu lorsque le bouton est cliqué
+        }
+  
+        a, button {
+          margin-bottom: 0.5rem; 
+          width: 100%;
+          text-align: left; 
+          font-size: 1.1rem;
+        }
+      }
+    }
+  }
+  @media (max-width: 812px) {
+    .navigation {
+    padding: 0.4rem 1.5rem;
+    }
+  }

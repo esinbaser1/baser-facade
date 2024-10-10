@@ -2,8 +2,7 @@ import { useState } from "react";
 import { useMutation, useQueryClient, useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { getSocialNetworkById, updateSocialNetwork } from "../../../api/socialNetworkApi";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { toast } from 'react-toastify';
 
 const UpdateSocialNetwork = () => {
 
@@ -69,7 +68,6 @@ const UpdateSocialNetwork = () => {
 
         <button type="submit">Modifier</button>
       </form>
-      <ToastContainer/>
     </>
   );
 };

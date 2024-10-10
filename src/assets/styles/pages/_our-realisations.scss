@@ -1,0 +1,59 @@
+.ourRealisations-container {
+    padding: 6rem 1.5rem 0 1.5rem;
+}
+
+.ourRealisations {
+
+    h1 {
+        color: $main-color;
+        margin-bottom: 1.5rem;
+    }
+
+    p {
+        font-size: 1.1rem;
+        line-height: 1.6; /* espace entre les lignes */
+        margin-bottom: 1.5rem; 
+        max-width: 1200px;
+    }
+
+    .ourRealisations-img {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); 
+        gap: 1.5rem;
+    }
+
+    img {
+        width: 100%; 
+        height: 500px; 
+        object-fit: cover;
+        border-radius: 4px;
+        object-position: top; 
+    }
+
+}
+
+/* Responsive pour les tablettes */
+@media (max-width: 1024px) {
+    .ourRealisations {
+
+        .ourRealisations-img {
+            grid-template-columns: repeat(2, 1fr); /* 2 colonnes sur tablette */
+            gap: 1rem; /* Réduit l'espacement entre les images */
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .ourRealisations {
+        .ourRealisations-img {
+            grid-template-columns: 1fr; /* 1 colonne sur mobile */
+            gap: 1rem; /* Espacement réduit entre les images */
+        }
+
+        img {
+            width: 100%; /* L'image prend 100% de la largeur de la colonne */
+            height: 100vw; /* Hauteur égale à la largeur pour former un carré */
+            object-fit: cover; /* Remplit l'espace sans déformer l'image */
+        }
+    }
+}

@@ -21,6 +21,7 @@ import UpdateSocialNetwork from "./components/admin/socialNetworkManagement/Upda
 import InformationContactManager from "./components/admin/informationContactManagement/InformationContactManager";
 import UpdateInformationContact from "./components/admin/informationContactManagement/UpdateInformationContact";
 import ContactManager from "./components/admin/contactManagement/ContactManager";
+import Footer from "./components/Footer";
 
 const App = () => {
   const { logout } = useContext(AuthContext); 
@@ -28,6 +29,7 @@ const App = () => {
   useEffect(() => {
     setupInterceptors(logout);
   }, [logout]);
+
 
   return (
     <div>
@@ -60,6 +62,7 @@ const App = () => {
 
         </Routes>
 
+        {/* <Footer/> */}
       </BrowserRouter>
       <ToastContainer/>
     </div>

@@ -1,0 +1,38 @@
+* { 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color:black;
+}
+
+body {
+    background-color: $light-bg;
+}
+
+button {
+    background: none;
+    border: none;
+    font-size: 1rem;
+}
+
+ul {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+
+    li {
+      line-height: 1.6;
+      margin-bottom: 0.5rem;
+    }
+  }
+
+
+  
+
+//   html {
+//     scroll-behavior: smooth;
+//   }

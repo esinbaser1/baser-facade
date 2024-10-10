@@ -4,8 +4,7 @@ import { useParams } from "react-router-dom";
 import { getContentById, updateContent } from "../../../api/contentApi";
 import { getStatuses } from '../../../api/statusApi';
 import { getSections } from '../../../api/sectionApi';
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 const UpdateContent = () => {
   
@@ -125,7 +124,6 @@ const UpdateContent = () => {
           Mettre à jour
         </button>
       </form>
-      <ToastContainer />
     </div>
   );
 };

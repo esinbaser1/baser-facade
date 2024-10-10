@@ -1,8 +1,9 @@
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useState } from "react";
 import { addContact, getContactTypeOfProject } from "../api/contactApi";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
 
 const ContactUs = () => {
   const [firstname, setFirstname] = useState("");
@@ -12,6 +13,7 @@ const ContactUs = () => {
   const [city, setCity] = useState("");
   const [typeOfProject, setTypeOfProject] = useState("");
   const [message, setMessage] = useState("");
+  const [consent, setConsent] = useState(false);
 
   const queryClient = useQueryClient();
 
@@ -20,7 +22,7 @@ const ContactUs = () => {
     queryFn: getContactTypeOfProject,
     onSuccess: (data) => {
       if (data && data.length > 0) {
-        setTypeOfProject(data[0].id); 
+        setTypeOfProject(data[0].id);
       }
     },
   });
@@ -30,14 +32,15 @@ const ContactUs = () => {
     mutationFn: addContact,
     onSuccess: (data) => {
       if (data.success) {
-        queryClient.invalidateQueries('contact');
-        setFirstname('');
-        setLastname('');
-        setEmail('');
-        setMobile('');
-        setCity('');
+        queryClient.invalidateQueries("contact");
+        setFirstname("");
+        setLastname("");
+        setEmail("");
+        setMobile("");
+        setCity("");
         setTypeOfProject(data.length > 0 ? data[0].id : "");
-        setMessage('');
+        setMessage("");
+        setConsent(false);
 
         toast.success(data.message);
       } else {
@@ -51,88 +54,144 @@ const ContactUs = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    mutation.mutate({ firstname, lastname, email, mobile, city, type_of_project_id: typeOfProject, message });
+    mutation.mutate({
+      firstname,
+      lastname,
+      email,
+      mobile,
+      city,
+      type_of_project_id: typeOfProject,
+      message,
+      consent,
+    });
   };
 
   if (isLoading) return "Chargement...";
   if (error) return "Une erreur s'est produite" + error.message;
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="firstname">Prénom*</label>
-        <input
-          type="text"
-          id="firstname"
-          name="firstname"
-          value={firstname}
-          onChange={(e) => setFirstname(e.target.value)}
-        />
+    <div className="contact">
+      <h1>
+        Contactez-nous pour vos Travaux de Façade à Bourgoin-Jallieu (Isère)
+      </h1>
 
-        <label htmlFor="lastname">Nom*</label>
-        <input
-          type="text"
-          id="lastname"
-          name="lastname"
-          value={lastname}
-          onChange={(e) => setLastname(e.target.value)}
-        />
+      <p className="contact__description">
+        Que vous soyez particulier ou entreprise, à la recherche d&apos;une
+        société spécialisée dans la rénovation de façade à Bourgoin-Jallieu ou
+        en Isère, Baser est à votre écoute.
+      </p>
 
-        <label htmlFor="email">Email*</label>
-        <input
-          type="text"
-          id="email"
-          name="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+      <form className="contact__form" onSubmit={handleSubmit}>
+        <div className="contact__form-container">
+          <div className="contact__form-group">
+            <label htmlFor="lastname">Nom*</label>
+            <input
+              type="text"
+              id="lastname"
+              name="lastname"
+              value={lastname}
+              onChange={(e) => setLastname(e.target.value)}
+            />
+          </div>
 
-        <label htmlFor="mobile">Téléphone*</label>
-        <input
-          type="text"
-          id="mobile"
-          name="mobile"
-          value={mobile}
-          onChange={(e) => setMobile(e.target.value)}
-        />
+          <div className="contact__form-group">
+            <label htmlFor="firstname">Prénom*</label>
+            <input
+              type="text"
+              id="firstname"
+              name="firstname"
+              value={firstname}
+              onChange={(e) => setFirstname(e.target.value)}
+            />
+          </div>
 
-        <label htmlFor="city">Ville*</label>
-        <input
-          type="text"
-          id="city"
-          name="city"
-          value={city}
-          onChange={(e) => setCity(e.target.value)}
-        />
+          <div className="contact__form-group">
+            <label htmlFor="email">Email*</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
 
-        <label htmlFor="type_of_project">Type de projet*</label>
+          <div className="contact__form-group">
+            <label htmlFor="mobile">Téléphone*</label>
+            <input
+              type="tel"
+              id="mobile"
+              name="mobile"
+              value={mobile}
+              onChange={(e) => setMobile(e.target.value)}
+            />
+          </div>
 
-        <select
-          name="type_of_project"
-          id="type_of_project"
-          value={typeOfProject}
-          onChange={(e) => setTypeOfProject(e.target.value)}
-        >
-          {data &&
-            data.map((top) => (
-              <option key={top.id} value={top.id}>
-                {top.name}
-              </option>
-            ))}
-        </select>
+          <div className="contact__form-group">
+            <label htmlFor="typeOfProject">Type de projet*</label>
+            <select
+              name="typeOfProject"
+              id="typeOfProject"
+              value={typeOfProject}
+              onChange={(e) => setTypeOfProject(e.target.value)}
+            >
+              {data &&
+                data.map((top) => (
+                  <option key={top.id} value={top.id}>
+                    {top.name}
+                  </option>
+                ))}
+            </select>
+          </div>
 
-        <label htmlFor="message">Message</label>
-        <textarea
-          name="message"
-          id="message"
-          value={message}
-          onChange={(e) => setMessage(e.target.value)}
-        ></textarea>
+          <div className="contact__form-group">
+            <label htmlFor="city">Ville*</label>
+            <input
+              type="text"
+              id="city"
+              name="city"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+            />
+          </div>
 
-        <button type="submit">Envoyer</button>
+          <div className="contact__form-group contact__form-group--full-width">
+            <label htmlFor="message">Message</label>
+            <textarea
+              name="message"
+              id="message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+            ></textarea>
+          </div>
+        </div>
+
+        <div className="contact__form-footer">
+          <div className="contact__form-checkbox">
+            <input
+              type="checkbox"
+              id="consent"
+              name="consent"
+              checked={consent}
+              onChange={(e) => setConsent(e.target.checked)}
+            />
+
+            <label htmlFor="consent">
+              J’accepte que les données saisies soient utilisées par
+              www.baser-facade.com pour me recontacter.
+            </label>
+          </div>
+          <Link to="/privacy-policy">
+            {" "}
+            Voir la politique de confidentialité.
+          </Link>
+        </div>
+
+        <div className="contact__button-container">
+          <button type="submit">Envoyer</button>
+        </div>
       </form>
-      <ToastContainer />
-    </>
+    </div>
   );
 };
 
