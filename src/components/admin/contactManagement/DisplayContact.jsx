@@ -4,17 +4,18 @@ import { getContact } from "../../../api/contactApi";
 import DisplayContactCard from "./DisplayContactCard";
 
 const DisplayContact = () => {
+  const [showDetails, setShowDetails] = useState(false);
+
   const { isLoading, error, data } = useQuery({
     queryKey: ["contact"],
     queryFn: getContact,
   });
 
-  const [showDetails, setShowDetails] = useState(false);
+  const contactList = data?.contact?.length > 0 ? data.contact : [];
 
   if (isLoading) return "Chargement...";
   if (error) return "Une erreur s'est produite: " + error.message;
 
-  const contactList = data && data.contact ? data.contact : [];
 
   return (
     <>
@@ -40,7 +41,7 @@ const DisplayContact = () => {
           </tr>
         </thead>
         <tbody>
-          {contactList.length > 0 ? (
+          {contactList ? (
             contactList.map((item) => (
               <DisplayContactCard
                 key={item.id}

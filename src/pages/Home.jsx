@@ -20,7 +20,7 @@ const Home = () => {
       <section className="promise">
         <div className="promise__content">
           <h2>Notre promesse</h2>
-          <p>Une promesse solide, tout comme nos réalisations.</p>
+          <p>Une promesse solide, tout comme  <Link to="/nosRealisations" className="realisation-link"> nos réalisations.</Link></p>
         </div>
         <div className="promise__grid">
 

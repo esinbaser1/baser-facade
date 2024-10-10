@@ -8,10 +8,10 @@ const DisplayInformationContact = () => {
     queryFn: getInformationContact,
   });
 
+  const informationList = data?.information?.length > 0 ? data.information : [];
+
   if (isLoading) return "Chargement...";
   if (error) return "Une erreur s'est produite: " + error.message;
-
-  const informationList = data?.information ?? [];
 
   return (
     <>
@@ -28,7 +28,7 @@ const DisplayInformationContact = () => {
           </tr>
         </thead>
         <tbody>
-          {informationList.length > 0 ? (
+          {informationList ? (
             informationList.map((item) => (
               <DisplayInformationContactCard key={item.id} information={item} />
             ))

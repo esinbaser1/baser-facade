@@ -22,6 +22,8 @@ import InformationContactManager from "./components/admin/informationContactMana
 import UpdateInformationContact from "./components/admin/informationContactManagement/UpdateInformationContact";
 import ContactManager from "./components/admin/contactManagement/ContactManager";
 import Footer from "./components/Footer";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import LegalNotice from "./pages/LegalNotice";
 
 const App = () => {
   const { logout } = useContext(AuthContext); 
@@ -42,6 +44,8 @@ const App = () => {
           <Route path="/nosServices" element={<OurServices />} />
           <Route path="/nosRealisations" element={<OurRealisations />} />
           <Route path="/contactezNous" element={<ContactUs />} />
+          <Route path="/politiqueConfidentialite" element={<PrivacyPolicy />} />
+          <Route path="/mentionsLegales" element={<LegalNotice />} />
 
 
           <Route path="/admin" element={<ProtectedRoutes><Admin/></ProtectedRoutes>} />
@@ -62,7 +66,7 @@ const App = () => {
 
         </Routes>
 
-        {/* <Footer/> */}
+        <Footer/>
       </BrowserRouter>
       <ToastContainer/>
     </div>

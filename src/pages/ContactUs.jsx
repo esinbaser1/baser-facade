@@ -4,8 +4,16 @@ import { addContact, getContactTypeOfProject } from "../api/contactApi";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
+import { FaPhoneAlt } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+import { getInformationContact } from "../api/informationContactApi";
 
 const ContactUs = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
   const [email, setEmail] = useState("");
@@ -52,6 +60,14 @@ const ContactUs = () => {
     },
   });
 
+  const { data: informationData } = useQuery({
+    queryKey: ["information"],
+    queryFn: getInformationContact,
+  });
+
+  const informationList = informationData?.information ?? [];
+  const contactInfo = informationList.length > 0 ? informationList[0] : null;
+
   const handleSubmit = (e) => {
     e.preventDefault();
     mutation.mutate({
@@ -71,15 +87,27 @@ const ContactUs = () => {
 
   return (
     <div className="contact">
-      <h1>
-        Contactez-nous pour vos Travaux de Façade à Bourgoin-Jallieu (Isère)
-      </h1>
+      <div className="contact__content">
+        <h1>Contactez-nous</h1>
+        <div className="line"></div>
+        <p>
+          Que vous soyez particulier ou entreprise, à la recherche d&apos;une
+          société spécialisée dans la rénovation de façade à Bourgoin-Jallieu ou
+          en Isère, Baser est à votre écoute.
+        </p>
 
-      <p className="contact__description">
-        Que vous soyez particulier ou entreprise, à la recherche d&apos;une
-        société spécialisée dans la rénovation de façade à Bourgoin-Jallieu ou
-        en Isère, Baser est à votre écoute.
-      </p>
+        <div className="contact__icon">
+          <div className="contact-item">
+            <FaPhoneAlt aria-label="Téléphone" className="icon" />
+            <p>{contactInfo ? contactInfo.mobile : "Numéro non disponible"}</p>
+          </div>
+
+          <div className="contact-item">
+            <MdEmail aria-label="Email" className="icon" />
+            <p>{contactInfo ? contactInfo.email : "Email non disponible"}</p>
+          </div>
+        </div>
+      </div>
 
       <form className="contact__form" onSubmit={handleSubmit}>
         <div className="contact__form-container">
@@ -181,8 +209,7 @@ const ContactUs = () => {
               www.baser-facade.com pour me recontacter.
             </label>
           </div>
-          <Link to="/privacy-policy">
-            {" "}
+          <Link to="/politiqueConfidentialite">
             Voir la politique de confidentialité.
           </Link>
         </div>

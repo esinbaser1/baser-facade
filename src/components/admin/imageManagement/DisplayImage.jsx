@@ -8,10 +8,10 @@ const DisplayImage = () => {
     queryFn: getImage,
   });
 
+  const imageList = data?.image?.length > 0 ? data.image : [];
+
   if (isLoading) return "Chargement...";
   if (error) return "Une erreur s'est produite: " + error.message;
-
-  const imageList = data && data.image ? data.image : [];
 
   return (
     <div>
@@ -26,7 +26,7 @@ const DisplayImage = () => {
           </tr>
         </thead>
         <tbody>
-          {imageList.length > 0 ? (
+          {imageList ? (
             imageList.map((item) => (
               <DisplayImageCard key={item.id} image={item} />
             ))

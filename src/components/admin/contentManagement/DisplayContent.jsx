@@ -7,11 +7,11 @@ const DisplayContent = () => {
       queryKey: ['contents'],
       queryFn: getContent,
     });
+
+    const contentList = data?.content?.length > 0 ? data.content : [];
   
     if (isLoading) return "Chargement...";
     if (error) return "Une erreur s'est produite: " + error.message;
-  
-    const contentList = data && data.content ? data.content : [];
   
     return (
       <>
@@ -26,7 +26,7 @@ const DisplayContent = () => {
             </tr>
           </thead>
           <tbody>
-            {contentList.length > 0 ? (
+            {contentList ? (
               contentList.map((item) => (
                 <DisplayContentCard key={item.id} content={item} />
               ))

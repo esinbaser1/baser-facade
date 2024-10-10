@@ -9,11 +9,10 @@ const DisplaySocialNetwork = () => {
     queryFn: getSocialNetwork,
   });
 
+  const socialNetworkList = data?.socialNetwork?.length > 0 ? data.socialNetwork : [];
+
   if (isLoading) return "Chargement...";
   if (error) return "Une erreur s'est produite: " + error.message;
-
-  const socialNetworkList =
-    data && data.socialNetwork ? data.socialNetwork : [];
 
   return (
     <div>
@@ -28,7 +27,7 @@ const DisplaySocialNetwork = () => {
           </tr>
         </thead>
         <tbody>
-          {socialNetworkList.length > 0 ? (
+          {socialNetworkList ? (
             socialNetworkList.map((item) => (
               <DisplaySocialNetworkCard key={item.id} socialNetwork={item} />
             ))

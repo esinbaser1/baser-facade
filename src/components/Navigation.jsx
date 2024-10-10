@@ -14,7 +14,7 @@ const Navigation = () => {
       const response = await logoutUser();
       console.log("Réponse du serveur lors de la déconnexion:", response);
       logout(); // Supprime les informations d'authentification du contexte et du localStorage
-      navigate("/"); 
+      navigate("/");
     } catch (error) {
       console.error("Erreur lors de la déconnexion", error);
     }
@@ -26,22 +26,53 @@ const Navigation = () => {
 
   return (
     <header className="navigation">
-      <NavLink to="/" className="logo">Baser</NavLink>
+      <NavLink to="/" className="logo">
+        Baser
+      </NavLink>
 
       <button className="burger-menu" onClick={toggleMenu}>
-        &#9776; 
+        &#9776;
       </button>
 
       <nav className={isMenuOpen ? "open" : ""}>
-        <NavLink to="/">Accueil</NavLink>
-        <NavLink to="/nosServices">Nos Services</NavLink>
-        <NavLink to="/nosRealisations">Nos Réalisations</NavLink>
-        <NavLink to="/contactezNous">Contactez-nous</NavLink>
+        <NavLink
+          to="/"
+          className={({ isActive }) => (isActive ? "active" : "")}
+        >
+          Accueil
+        </NavLink>
+        <NavLink
+          to="/nosServices"
+          className={({ isActive }) => (isActive ? "active" : "")}
+        >
+          Nos Services
+        </NavLink>
+        <NavLink
+          to="/nosRealisations"
+          className={({ isActive }) => (isActive ? "active" : "")}
+        >
+          Nos Réalisations
+        </NavLink>
+        <NavLink
+          to="/contactezNous"
+          className={({ isActive }) => (isActive ? "active" : "")}
+        >
+          Contactez-nous
+        </NavLink>
 
-        {auth.role === "admin" && <NavLink to="/admin">Admin</NavLink>}
+        {auth.role === "admin" && (
+          <NavLink
+            to="/admin"
+            className={({ isActive }) => (isActive ? "active" : "")}
+          >
+            Admin
+          </NavLink>
+        )}
 
         {auth.token ? (
-          <button onClick={handleLogout} aria-label="Déconnexion">Déconnexion</button>
+          <button onClick={handleLogout} aria-label="Déconnexion">
+            Déconnexion
+          </button>
         ) : null}
       </nav>
     </header>

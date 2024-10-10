@@ -7,7 +7,7 @@ import { useEffect } from "react";
 const scrollWithOffset = (e) => {
   const yOffset = -100; 
   const y = e.getBoundingClientRect().top + window.scrollY + yOffset;
-  window.scrollTo({ top: y, behavior: 'smooth' });
+  window.scrollTo({ top: y });
 };
 
 const OurServices = () => {

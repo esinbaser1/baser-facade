@@ -19,6 +19,31 @@
       display: flex;
       align-items: center;
       gap: 1.5rem;
+
+      a {
+        position: relative;
+        display: inline-block;
+        text-decoration: none;
+        color: white;
+        padding-bottom: 3px;
+      
+        &::before {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          width: 0;
+          height: 1px;
+          background-color:white;
+          transition: width 0.3s ease-in-out;
+        }
+      
+        &:hover::before,
+        &.active::before {
+          width: 100%;
+        }
+      }
+
   
       a, button {
         color: white;
@@ -77,3 +102,5 @@
     padding: 0.4rem 1.5rem;
     }
   }
+
+  

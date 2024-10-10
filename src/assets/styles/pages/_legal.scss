@@ -1,0 +1,75 @@
+.legal {
+  padding: 6rem 1.5rem 0 1.5rem;
+
+  h1 {
+    margin-bottom: 2rem;
+    text-align: center;
+    color: $main-color;
+  }
+
+  .legal__container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); // 2 colonnes en desktop
+    gap: 2rem; // Plus de gap pour une meilleure lisibilité entre les items
+    border-radius: 8px;
+
+    // Les articles auront un fond différent pour les identifier facilement
+    .items {
+      background-color: $main-color;
+      padding: 2rem;
+      border-radius: 4px;
+      color: #e8e1e1; // Texte plus lisible sur fond coloré
+
+      h2 {
+        margin-bottom: 0.8rem;
+        color: #fff; // Titre blanc pour plus de contraste
+      }
+
+      p {
+        margin-bottom: 1.5rem;
+        font-size: 1rem;
+        color: #e8e1e1;
+      }
+
+      ul {
+        list-style-type: disc;
+        padding-left: 1rem;
+
+        li {
+          font-size: 1rem;
+          margin-bottom: 0.8rem;
+
+          strong {
+            font-family: "Montserrat SemiBold";
+          }
+        }
+      }
+    }
+
+    .line {
+      @include line(70, white);
+    }
+  }
+
+  // Articles qui doivent prendre toute la largeur
+  .full-width {
+    grid-column: span 2;
+  }
+
+  // Media query pour passer en colonne sous 768px
+  @media (max-width: 768px) {
+  
+      h1 {
+        text-align: left;
+      }
+  
+    .legal__container {
+      grid-template-columns: 1fr; // Passe à une seule colonne
+      gap: 0.5rem;
+    }
+
+    .full-width {
+      grid-column: span 1; // Full-width occupe toute la largeur en colonne
+    }
+  }
+}

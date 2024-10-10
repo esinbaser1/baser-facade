@@ -12,6 +12,7 @@ const Footer = () => {
     });
 
     const informationList = data?.information ?? [];
+    
     const contactInfo = informationList.length > 0 ? informationList[0] : null;
     
     if (isLoading) return "Chargement...";
@@ -28,6 +29,8 @@ const Footer = () => {
                 <div className="footer__contact">
                     <h3>Coordonnées</h3>
                     <div className="line"></div>
+
+
                     <div className="contact-item">
                         <FaPhoneAlt aria-label="Téléphone" />
                         <p>{contactInfo ? contactInfo.mobile : "Numéro non disponible"}</p>
@@ -42,6 +45,7 @@ const Footer = () => {
                         <FaLocationDot aria-label="Adresse" />
                         <p>{contactInfo ? contactInfo.address : "Adresse non disponible"}</p>
                     </div>
+
                 </div>
 
                 <nav className="footer__nav">
