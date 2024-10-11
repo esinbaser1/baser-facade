@@ -1,86 +1,84 @@
-import { useState, useContext, useEffect } from 'react';
-import { useMutation } from 'react-query';
-import { AuthContext } from '../context/AuthContext';
-import { useNavigate } from 'react-router-dom';
-import { loginUser } from '../api/loginApi';
+import { useState, useContext, useEffect } from "react";
+import { useMutation } from "react-query";
+import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { loginUser } from "../api/loginApi";
+import { toast } from "react-toastify";
 
 const Login = () => {
-    const navigate = useNavigate();
-    const { auth, login } = useContext(AuthContext); // Ajout de `auth` pour vérifier l'état d'authentification
-    const [values, setValues] = useState({ email: "", password: "" });
-    const [error, setError] = useState(null);
-    const [successMessage, setSuccessMessage] = useState(null);
+  const navigate = useNavigate();
+  const { auth, login } = useContext(AuthContext);
+  const [values, setValues] = useState({ email: "", password: "" });
+  // Redirection si l'utilisateur est déjà connecté
+  useEffect(() => {
+    if (auth.token) {
+      navigate("/");
+    }
+  }, [auth.token, navigate]);
 
-    // Redirection si l'utilisateur est déjà connecté
-    useEffect(() => {
-        if (auth.token) {
-            navigate("/");
-        }
-    }, [auth.token, navigate]);
+  const mutation = useMutation({
+    mutationFn: loginUser, 
+    onSuccess: (data) => {
+      if (data.success) {
+        login(data.token, data.role, data.user_id); // Mise à jour du contexte avec les données d'authentification
+        toast.success(data.message);
+        navigate("/");
+      } else {
+        toast.error(data.message);
+      }
+    },
+    onError: (error) => {
+        toast.error("Erreur de serveur : " + error.message);
+    },
+  });
 
-    const mutation = useMutation(loginUser, {
-        onSuccess: (data) => {
-            if (data.success) {
-                login(data.token, data.role, data.user_id); // Mise à jour du contexte avec les données d'authentification
-                setSuccessMessage(data.message); // Utiliser le message de succès provenant du serveur
-                setError(null);
-                navigate("/");
-            } else {
-                setError(data.message);
-                setSuccessMessage(null);
-            }
-        },
-        onError: () => {
-            setError("Erreur lors de la connexion. Veuillez réessayer.");
-            setSuccessMessage(null);
-        },
+  // Gestion des changements dans le formulaire
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setValues({
+      ...values,
+      [name]: value,
     });
+  };
 
-    // Gestion des changements dans le formulaire
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setValues({
-            ...values,
-            [name]: value,
-        });
-    };
+  // Gestion de la soumission du formulaire
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    mutation.mutate(values); // Déclenche l'exécution de la mutation
+  };
 
-    // Gestion de la soumission du formulaire
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        mutation.mutate(values); // Déclenche l'exécution de la mutation
-    };
+  return (
+    <div className="login">
+      <form onSubmit={handleSubmit} className="login__form">
+        <h1>Connexion</h1>
+        <div className="line"></div>
+        <label htmlFor="email">Email*</label>
+        <input
+          id="email"
+          type="text"
+          onChange={handleChange}
+          name="email"
+          value={values.email}
+          placeholder="exemple@domaine.com"
+          aria-required="true"
+        />
 
-    return (
-        <section>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="email">Email*</label>
-                <input
-                    id="email"
-                    type="text"
-                    onChange={handleChange}
-                    name="email"
-                    value={values.email}
-                    placeholder="exemple@domaine.com"
-                    aria-required="true"
-                />
-
-                <label htmlFor="password">Mot de passe*</label>
-                <input
-                    id="password"
-                    type="password"
-                    onChange={handleChange}
-                    name="password"
-                    value={values.password}
-                    placeholder="Entrez votre mot de passe"
-                    aria-required="true"
-                />
-                <button type="submit">Connexion</button>
-            </form>
-            {error && <p>{error}</p>}
-            {successMessage && <p>{successMessage}</p>}
-        </section>
-    );
+        <label htmlFor="password">Mot de passe*</label>
+        <input
+          id="password"
+          type="password"
+          onChange={handleChange}
+          name="password"
+          value={values.password}
+          placeholder="Entrez votre mot de passe"
+          aria-required="true"
+        />
+        <div className="button-container">
+          <button type="submit">Connexion</button>
+        </div>
+      </form>
+    </div>
+  );
 };
 
 export default Login;

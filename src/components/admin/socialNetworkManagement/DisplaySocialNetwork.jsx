@@ -21,7 +21,7 @@ const DisplaySocialNetwork = () => {
           <tr>
             <th scope="col">Nom du réseau social</th>
             <th scope="col">Url</th>
-            <th scope="col" colSpan={2}>
+            <th scope="col" colSpan={2} className="action-center">
               Action
             </th>
           </tr>

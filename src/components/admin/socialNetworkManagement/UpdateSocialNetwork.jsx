@@ -3,6 +3,7 @@ import { useMutation, useQueryClient, useQuery } from "react-query";
 import { useParams } from "react-router-dom";
 import { getSocialNetworkById, updateSocialNetwork } from "../../../api/socialNetworkApi";
 import { toast } from 'react-toastify';
+import AdminNavigation from "../AdminNavigation";
 
 const UpdateSocialNetwork = () => {
 
@@ -58,17 +59,19 @@ const UpdateSocialNetwork = () => {
   }
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
+    <div className="content-wrapper">
+    <AdminNavigation/>
+    <h2>Modifier le réseau social</h2>
+      <form onSubmit={handleSubmit} className='form'>
         <label htmlFor="platform">Nom du réseau social*</label>
         <input type="text" id="platform"name="platform" value={platform} onChange={(e) => setPlatform(e.target.value)}/>
 
         <label htmlFor="url">Url*</label>
         <input type="text" id="url"name="url" value={url} onChange={(e) => setUrl(e.target.value)}/>
 
-        <button type="submit">Modifier</button>
+        <button type="submit">Mettre à jour</button>
       </form>
-    </>
+    </div>
   );
 };
 

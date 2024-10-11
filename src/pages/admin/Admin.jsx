@@ -3,9 +3,9 @@ import AdminNavigation from "../../components/admin/AdminNavigation";
 const Admin = () => {
 
   return (
-    <div>
+    <div className="navigation-and-content">
       <AdminNavigation />
-      <p>Bienvenue sur la page d&apos;administration</p>
+      <h1 className="admin-h1">Bienvenue sur la page d&apos;administration</h1>
     </div>
   );
 };

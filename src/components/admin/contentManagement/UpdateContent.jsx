@@ -5,6 +5,7 @@ import { getContentById, updateContent } from "../../../api/contentApi";
 import { getStatuses } from '../../../api/statusApi';
 import { getSections } from '../../../api/sectionApi';
 import { toast } from "react-toastify";
+import AdminNavigation from "../AdminNavigation";
 
 const UpdateContent = () => {
   
@@ -77,9 +78,10 @@ const UpdateContent = () => {
   if (errorStatuses) return <p>Une erreur s&lsquo;est produite en récupérant les statuts : {errorStatuses.message}</p>;
 
   return (
-    <div>
+    <div className="content-wrapper">
+      <AdminNavigation/>
       <h2>Modifier le contenu</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='form'>
         <label htmlFor="content">Contenu</label>
         <input
           type="text"

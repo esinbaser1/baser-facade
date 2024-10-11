@@ -11,7 +11,10 @@ const DisplayContact = () => {
     queryFn: getContact,
   });
 
+
+  
   const contactList = data?.contact?.length > 0 ? data.contact : [];
+  
 
   if (isLoading) return "Chargement...";
   if (error) return "Une erreur s'est produite: " + error.message;
@@ -37,7 +40,7 @@ const DisplayContact = () => {
                 <th scope="col">Type de projet</th>
               </>
             )}
-            <th scope="col">Action</th>
+            <th scope="col" className="action-center">Action</th>
           </tr>
         </thead>
         <tbody>

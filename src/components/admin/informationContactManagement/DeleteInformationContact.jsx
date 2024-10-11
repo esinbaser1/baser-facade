@@ -28,7 +28,7 @@ const DeleteInformationContact = ( {informationId} ) => {
   };
 
   return (
-    <button onClick={handleDeleteClick} disabled={mutation.isLoading}>
+    <button onClick={handleDeleteClick} disabled={mutation.isLoading} className='red-link'>
       {mutation.isLoading ? "Suppression..." : "Supprimer"}
     </button>
   );

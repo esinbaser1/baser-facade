@@ -64,7 +64,7 @@ const AddContent = () => {
   return (
     <>
       <h2>Ajouter du contenu</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='form'>
         <label htmlFor="content">Contenu</label>
         <textarea
           type="text"

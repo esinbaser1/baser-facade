@@ -11,14 +11,14 @@ const DisplayInformationContactCard = ({information}) => {
 
   return (
     <tr>
-      <td>{information.mobile}</td>
-      <td>{information.email}</td>
-      <td>{information.address}</td>
-      <td>
+      <td data-label="Numéro de téléphone">{information.mobile}</td>
+      <td data-label="Email">{information.email}</td>
+      <td data-label="Adresse">{information.address}</td>
+      <td data-label="Action">
+      <div className="button-group">
         <button onClick={handleEditClick}>Modifier</button>
-      </td>
-      <td>
       <DeleteInformationContact informationId={information.id} />
+        </div>
       </td>
     </tr>
   );

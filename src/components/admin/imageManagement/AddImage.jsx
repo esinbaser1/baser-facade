@@ -65,9 +65,9 @@ const AddImage = () => {
     );
 
   return (
-    <div>
+    <>
       <h2>Ajouter des images</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='form'>
         <label htmlFor="imageName">Nom de l&lsquo;image</label>
         <input
           type="text"
@@ -102,7 +102,7 @@ const AddImage = () => {
         />
         <button type="submit">Ajouter</button>
       </form>
-    </div>
+    </>
   );
 };
 

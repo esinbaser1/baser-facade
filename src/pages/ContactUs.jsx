@@ -65,8 +65,7 @@ const ContactUs = () => {
     queryFn: getInformationContact,
   });
 
-  const informationList = informationData?.information ?? [];
-  const contactInfo = informationList.length > 0 ? informationList[0] : null;
+  const informationList = informationData?.information?.length > 0 ? informationData.information[0] :  [];
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -87,10 +86,11 @@ const ContactUs = () => {
 
   return (
     <div className="contact">
+      <div className="contact__container">
       <div className="contact__content">
         <h1>Contactez-nous</h1>
         <div className="line"></div>
-        <p>
+        <p className="text">
           Que vous soyez particulier ou entreprise, à la recherche d&apos;une
           société spécialisée dans la rénovation de façade à Bourgoin-Jallieu ou
           en Isère, Baser est à votre écoute.
@@ -99,12 +99,12 @@ const ContactUs = () => {
         <div className="contact__icon">
           <div className="contact-item">
             <FaPhoneAlt aria-label="Téléphone" className="icon" />
-            <p>{contactInfo ? contactInfo.mobile : "Numéro non disponible"}</p>
+            <p>{informationList ? informationList.mobile : "Numéro non disponible"}</p>
           </div>
 
           <div className="contact-item">
             <MdEmail aria-label="Email" className="icon" />
-            <p>{contactInfo ? contactInfo.email : "Email non disponible"}</p>
+            <p>{informationList ? informationList.email : "Email non disponible"}</p>
           </div>
         </div>
       </div>
@@ -205,8 +205,7 @@ const ContactUs = () => {
             />
 
             <label htmlFor="consent">
-              J’accepte que les données saisies soient utilisées par
-              www.baser-facade.com pour me recontacter.
+              J’accepte que les données saisies soient utilisées par www.baser.com pour me recontacter.
             </label>
           </div>
           <Link to="/politiqueConfidentialite">
@@ -218,6 +217,7 @@ const ContactUs = () => {
           <button type="submit">Envoyer</button>
         </div>
       </form>
+    </div>
     </div>
   );
 };

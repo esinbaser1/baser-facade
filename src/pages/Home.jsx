@@ -8,7 +8,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="home-container">
+    <>
       <header className="home-header">
         <div className="home-header__info">
           <h1> BASER - Spécialiste en Ravalement et Rénovation de Façade à Bourgoin-Jallieu (Isère) </h1>
@@ -88,7 +88,7 @@ const Home = () => {
         </section>
 
       </main>
-    </div>
+    </>
   );
 };
 

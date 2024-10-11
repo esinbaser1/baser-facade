@@ -16,7 +16,7 @@ const DisplayContactCard = ({ contact }) => {
   };
 
   const handleReplyClick = () => {
-    setReplyModalOpen((prevState) => !prevState); 
+    setReplyModalOpen((prevState) => !prevState);
   };
 
   // fonction pour tronquer le message à 25 caractères
@@ -30,30 +30,40 @@ const DisplayContactCard = ({ contact }) => {
   return (
     <>
       <tr>
-        <td>{contact.email}</td>
+        <td data-label="Email">{contact.email}</td>
+{/* 
         <td className="message-cell">
           {selectedContactId === contact.id
             ? contact.message
             : getTruncatedMessage(contact.message)}
-        </td>
-        <td>{contact.sending_date}</td>
-        <td>{contact.status_name}</td>
+        </td> */}
+        <td  data-label="Message" className={contact.message === 'Pas de message.' ? 'no-message' : ''}>
+  {selectedContactId === contact.id ? contact.message : getTruncatedMessage(contact.message)}
+</td>
 
-        <td>
+        
+
+        <td data-label="Date d'envoi">{contact.sending_date}</td>
+        <td data-label="Statut" className={contact.status_name === "Non lu" ? "status-unread" : ""}>
+          {contact.status_name}
+        </td>
+
+        <td data-label="Action">
           {selectedContactId === contact.id ? (
-            <>
+            <div className="button-group">
               <button onClick={handleReplyClick}>
                 {replyModalOpen ? "Fermer la modale" : "Répondre"}
               </button>
               <button onClick={handleViewClick}>Cacher</button>
               <ArchiveContact contactId={contact.id} />
               <DeleteContact contactId={contact.id} />
-            </>
+            </div>
           ) : (
-            <>
-              <button onClick={handleViewClick}>Voir</button>
-              <DeleteContact contactId={contact.id} />
-            </>
+            <div className="button-group">
+              <button onClick={handleViewClick} className="lili">
+                Voir
+              </button>
+            </div>
           )}
         </td>
       </tr>

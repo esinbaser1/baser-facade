@@ -11,17 +11,20 @@ const DisplayContentCard = ({ content }) => {
 
   return (
     <tr>
-      <td>{content.content}</td>
-      <td>{content.section_name}</td>
-      <td>{content.status_name}</td>
-      <td>
-        <button onClick={handleEditClick}>Modifier</button>
-      </td>
-      <td>
-        <DeleteContent contentId={content.id} />
-      </td>
-      <td>
-        {!content.is_archived && <ArchiveContent contentId={content.id} />}
+      <td data-label="Contenu">{content.content}</td>
+      <td data-label="Section">{content.section_name}</td>
+      <td data-label="Statut">{content.status_name}</td>
+      <td data-label="Action">
+
+        <div className="button-group">
+
+          <button onClick={handleEditClick}>Modifier</button>
+          <DeleteContent contentId={content.id} />
+          {!content.is_archived && <ArchiveContent contentId={content.id} />}
+
+        </div>
+
+        
       </td>
     </tr>
   );

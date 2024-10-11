@@ -9,10 +9,18 @@ const DisplaySocialNetworkCard = ({ socialNetwork }) => {
   }
   return (
     <tr>
-      <td>{socialNetwork.platform}</td>
-      <td>{socialNetwork.url}</td>
-      <td><button onClick={handleEditClick}>Modifier</button></td>
-      <td><DeleteSocialNetwork socialNetworkId={socialNetwork.id} /></td>
+      <td data-label="Nom du réseau social">{socialNetwork.platform}</td>
+      <td data-label="Url">{socialNetwork.url}</td>
+      <td data-label="Action">
+
+      <div className="button-group">
+
+        <button onClick={handleEditClick}>Modifier</button>
+        <DeleteSocialNetwork socialNetworkId={socialNetwork.id} />
+
+      </div>
+    </td>
+
     </tr>
   );
 };

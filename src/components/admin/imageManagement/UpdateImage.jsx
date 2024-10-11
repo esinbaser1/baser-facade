@@ -4,6 +4,7 @@ import { getSections } from '../../../api/sectionApi';
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getImageById, updateImage } from "../../../api/imageApi";
 import { toast } from "react-toastify";
+import AdminNavigation from "../AdminNavigation";
 
 const UpdateImage = () => {
   const { idImage } = useParams();  // Récupère l'ID de l'image depuis l'URL
@@ -71,8 +72,10 @@ const UpdateImage = () => {
   if (errorSections || errorImage) return <p>Erreur : {errorSections?.message || errorImage?.message}</p>;
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div className="content-wrapper">
+      <AdminNavigation/>
+      <h2>Modifier l&apos;image</h2>
+      <form onSubmit={handleSubmit} className='form'>
         <label htmlFor="imageName">Nom de l&apos;image</label>
         <input
           type="text"

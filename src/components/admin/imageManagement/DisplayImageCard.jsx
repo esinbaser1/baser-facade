@@ -12,11 +12,18 @@ const DisplayImageCard = ({ image }) => {
 
   return (
     <tr>
-      <td><img src={`${URL}assets/img/${image.path}`} width="100px" alt="" /></td>
-      <td>{image.name}</td>
-      <td>{image.section_name}</td>
-      <td><button onClick={handleEditClick}>Modifier</button></td>
-      <td><DeleteImage imageId={image.id}/></td>
+      <td data-label="Image"><img src={`${URL}assets/img/${image.path}`} width="100px" alt="" /></td>
+      <td data-label="Nom de l'image">{image.name}</td>
+      <td data-label="Section">{image.section_name}</td>
+
+      
+      <td data-label="Action">
+      <div className="button-group">
+        <button onClick={handleEditClick}>Modifier</button>
+    <DeleteImage imageId={image.id}/>
+    </div>
+    
+    </td>
     </tr>
 
   );

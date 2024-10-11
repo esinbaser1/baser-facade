@@ -22,7 +22,7 @@ const DisplayInformationContact = () => {
             <th scope="col">Numéro de téléphone</th>
             <th scope="col">Email</th>
             <th scope="col">Adresse</th>
-            <th scope="col" colSpan={2}>
+            <th scope="col" colSpan={2} className="action-center">
               Action
             </th>
           </tr>

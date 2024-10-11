@@ -1,4 +1,85 @@
-.admin-navigation-container {
-    padding-top: 6rem;
+.navigation-and-content {
+  display: flex;
+
+  .admin-navigation {
+    margin-top: 2rem;
+   margin-left: 2rem;
+    border-radius: 8px 8px 0 0;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.5rem;
+    flex: 0.2;
+    min-height: 100vh;
+    padding: 2rem;
+    background-color: darken($main-color, 5%);
+
+    a {
+      color: white;
+      font-size: 1.1rem;
+      padding: 0.8rem 1rem;
+      border-radius: 4px;
+      transition: all 0.3s ease;
+      position: relative;
+      text-align: left;
+
+      &::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        height: 1px;
+        background-color: rgba(255, 255, 255, 0.43);
+        transition: all 0.3s ease;
+      }
+
+      &:hover {
+        background-color: lighten($main-color, 5%);
+        transform: translateX(5px);
+      }
+    }
+
+    .active {
+      background-color: lighten($main-color, 5%);
+    }
+  }
+
+  .content-wrapper {
+    @include marge;
+    margin-top: 2rem;
+    flex: 0.8;
+    display: flex;
+    flex-direction: column;
+    background-color: #f9f9f9;
+
+    h1 {
+      margin-bottom: 1rem;
+    }
+    .line {
+      @include line(70, $main-color);
+      margin-bottom: 3rem;
+    }
+    h2 {
+      margin-bottom: 1.5rem;
+    }
+  }
 
 }
+@media screen and (max-width: 1030px) {
+    .navigation-and-content {
+        flex-direction: column;
+
+        .admin-navigation {
+          margin-right: 2rem;
+            min-height: 0;
+            row-gap: 0.5rem;
+            padding: 1rem;
+        }
+    }
+
+}
+.admin-h1 {
+margin: 5% auto 0 auto;
+text-align: center;
+  color: $main-color;
+  }

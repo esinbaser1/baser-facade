@@ -1,5 +1,6 @@
 .ourServices-container {
-  padding: 6rem 1.5rem 0 1.5rem;
+  margin-top: 2rem;
+  @include marge;
 }
 
 .ourServices {
@@ -15,8 +16,8 @@
     list-style-type: disc;
 
     li {
-  }
-    font-size: 1.1rem;
+      font-size: 1.1rem;
+    }
   }
 
   img {
@@ -180,7 +181,6 @@
   }
 
   @media (max-width: 768px) {
-
     .ourServices__links {
       flex-direction: column;
       gap: 1rem;
@@ -197,9 +197,6 @@
         "class5";
       column-gap: 0;
       row-gap: 1rem;
-
-
-   
     }
 
     img {
@@ -214,14 +211,13 @@
 }
 
 @media (max-width: 480px) {
-    .ourServices {
-
+  .ourServices {
     h1 {
-        width: 105%!important;
-      }
+      width: 105% !important;
+    }
 
     .spacer {
-        margin-top: 1.5rem!important;
-      }
+      margin-top: 1.5rem !important;
     }
+  }
 }

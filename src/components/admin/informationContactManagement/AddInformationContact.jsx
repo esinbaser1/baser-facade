@@ -37,7 +37,7 @@ const AddinformationContact = () => {
   return (
     <>
     <h2>Ajouter une information de contact</h2>
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className='form'>
 
       <label htmlFor="mobile">Numéro de téléphone</label>
       <input

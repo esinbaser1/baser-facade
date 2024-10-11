@@ -22,7 +22,7 @@ const DisplayImage = () => {
             <th scope="col">Image</th>
             <th scope="col">Nom de l&apos;image</th>
             <th scope="col">Section</th>
-            <th scope="col" colSpan={2}>Action</th>
+            <th scope="col" colSpan={2} className="action-center">Action</th>
           </tr>
         </thead>
         <tbody>

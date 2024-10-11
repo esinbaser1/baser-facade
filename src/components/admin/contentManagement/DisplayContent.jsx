@@ -14,7 +14,7 @@ const DisplayContent = () => {
     if (error) return "Une erreur s'est produite: " + error.message;
   
     return (
-      <>
+      <div>
         <h2>Liste des contenus</h2>
         <table>
           <thead>
@@ -22,7 +22,7 @@ const DisplayContent = () => {
               <th scope="col">Contenu</th>
               <th scope="col">Section</th>
               <th scope="col">Statut</th>
-              <th scope="col" colSpan={3}>Action</th>
+              <th scope="col" colSpan={3} className="action-center">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -39,7 +39,7 @@ const DisplayContent = () => {
             )}
           </tbody>
         </table>
-      </>
+      </div>
     );
   };
   

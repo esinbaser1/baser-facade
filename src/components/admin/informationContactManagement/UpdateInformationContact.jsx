@@ -3,6 +3,7 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { getInformationContactById, updateInformationContact } from "../../../api/informationContactApi";
+import AdminNavigation from "../AdminNavigation";
 
 const UpdateInformationContact = () => {
 
@@ -57,9 +58,10 @@ const UpdateInformationContact = () => {
   }
 
   return (
-    <>
-    <h2>Modifier une information de contact</h2>
-    <form onSubmit={handleSubmit}>
+    <div className="content-wrapper">
+    <AdminNavigation/>
+    <h2>Modifier l&apos;information de contact</h2>
+    <form onSubmit={handleSubmit} className='form'>
 
       <label htmlFor="mobile">Numéro de téléphone</label>
       <input
@@ -90,7 +92,7 @@ const UpdateInformationContact = () => {
 
       <button type="submit" disabled={mutation.isLoading}>Mettre à jour</button>
     </form>
-  </>
+  </div>
   );
 };
 

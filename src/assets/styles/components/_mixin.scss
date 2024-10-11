@@ -6,7 +6,7 @@
     color: $color;
     background-color: $bc;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.3s ease;
   
     &:hover {
       background-color: lighten($bc, 4%);
@@ -29,5 +29,16 @@
       to {
         width: #{$w}px;
       }
+    }
+  }
+
+  @mixin marge {
+    margin-left: 2rem ;
+    margin-right: 2rem ;
+
+    @media screen and (max-width: 480px) {
+
+    margin-left: 1.5rem ;
+    margin-right: 1.5rem ;
     }
   }

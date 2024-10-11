@@ -38,25 +38,28 @@ const ContactReplyModal = ({ isOpen, onClose, contact }) => {
 
   return (
     <>
-      <div>
-        <h2>Répondre à {contact.email}</h2>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="message">Votre message :</label>
-          <textarea
-            id="message"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-          ></textarea>
-          <div>
-            <button type="submit" disabled={mutation.isLoading}>
-              {mutation.isLoading ? "Envoi en cours..." : "Envoyer"}
-            </button>
-            <button type="button" onClick={onClose}> Annuler </button>
-          </div>
-        </form>
+      <div className={`modal-overlay ${isOpen ? "open" : ""}`}>
+        <div className="modal-content">
+          <h2>Répondre à {contact.email}</h2>
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="message">Votre message :</label>
+            <textarea
+              id="message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+            ></textarea>
+            <div>
+              <button type="submit" disabled={mutation.isLoading}>
+                {mutation.isLoading ? "Envoi en cours..." : "Envoyer"}
+              </button>
+              <button type="button" onClick={onClose}>Annuler</button>
+            </div>
+          </form>
+        </div>
       </div>
     </>
   );
+  
 };
 
 export default ContactReplyModal;

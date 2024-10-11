@@ -28,7 +28,7 @@ const ArchiveContent = ({ contentId }) => {
   };
   return (
     <div>
-      <button onClick={handleArchiveClick} disabled={mutation.isLoading}>
+      <button onClick={handleArchiveClick} disabled={mutation.isLoading}className="blue-link">
         {mutation.isLoading ? "Archivage..." : "Archiver"}
       </button>
     </div>
