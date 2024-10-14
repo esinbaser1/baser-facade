@@ -2,8 +2,7 @@
   display: flex;
 
   .admin-navigation {
-    margin-top: 2rem;
-   margin-left: 2rem;
+    margin: 2rem 2rem 0 2rem;
     border-radius: 8px 8px 0 0;
     display: flex;
     flex-direction: column;
@@ -63,23 +62,20 @@
       margin-bottom: 1.5rem;
     }
   }
-
 }
 @media screen and (max-width: 1030px) {
-    .navigation-and-content {
-        flex-direction: column;
+  .navigation-and-content {
+    flex-direction: column;
 
-        .admin-navigation {
-          margin-right: 2rem;
-            min-height: 0;
-            row-gap: 0.5rem;
-            padding: 1rem;
-        }
+    .admin-navigation {
+      min-height: 0;
+      row-gap: 0.5rem;
+      padding: 1rem;
     }
-
+  }
 }
 .admin-h1 {
-margin: 5% auto 0 auto;
-text-align: center;
+  margin: 5% auto 0 auto;
+  text-align: center;
   color: $main-color;
-  }
+}

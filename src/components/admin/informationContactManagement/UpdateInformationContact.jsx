@@ -58,8 +58,9 @@ const UpdateInformationContact = () => {
   }
 
   return (
-    <div className="content-wrapper">
+    <div className="navigation-and-content">
     <AdminNavigation/>
+    <div className="content-wrapper">
     <h2>Modifier l&apos;information de contact</h2>
     <form onSubmit={handleSubmit} className='form'>
 
@@ -92,6 +93,7 @@ const UpdateInformationContact = () => {
 
       <button type="submit" disabled={mutation.isLoading}>Mettre à jour</button>
     </form>
+  </div>
   </div>
   );
 };

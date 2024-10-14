@@ -5,10 +5,18 @@
   min-height: 100vh; 
   @include marge;
   gap: 2rem;
+  
 
 }
 .contact {
    width: 100%;  
+     .contact-details {
+    display: flex;
+    flex-direction: column;
+    p {
+      text-align: left;
+    }
+  }
   .contact__content {
     flex: 1;
   }
@@ -129,8 +137,11 @@
         padding: 0.6rem 3rem;
       }
     }
+    
   }
+
 }
+
 
 @media screen and (max-width: 1030px) {
   .contact__container {

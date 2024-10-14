@@ -31,12 +31,6 @@ const DisplayContactCard = ({ contact }) => {
     <>
       <tr>
         <td data-label="Email">{contact.email}</td>
-{/* 
-        <td className="message-cell">
-          {selectedContactId === contact.id
-            ? contact.message
-            : getTruncatedMessage(contact.message)}
-        </td> */}
         <td  data-label="Message" className={contact.message === 'Pas de message.' ? 'no-message' : ''}>
   {selectedContactId === contact.id ? contact.message : getTruncatedMessage(contact.message)}
 </td>
@@ -69,8 +63,8 @@ const DisplayContactCard = ({ contact }) => {
       </tr>
       {selectedContactId === contact.id && (
         <tr>
-          <td colSpan="5">
-            <div className="contact-details">
+          <td colSpan="5" className="contact-details">
+   
               <p>
                 <strong>Nom :</strong> {contact.lastname}
               </p>
@@ -86,7 +80,6 @@ const DisplayContactCard = ({ contact }) => {
               <p>
                 <strong>Projet :</strong> {contact.project_name}
               </p>
-            </div>
           </td>
         </tr>
       )}

@@ -72,8 +72,9 @@ const UpdateImage = () => {
   if (errorSections || errorImage) return <p>Erreur : {errorSections?.message || errorImage?.message}</p>;
 
   return (
-    <div className="content-wrapper">
+    <div className="navigation-and-content">
       <AdminNavigation/>
+      <div className="content-wrapper">
       <h2>Modifier l&apos;image</h2>
       <form onSubmit={handleSubmit} className='form'>
         <label htmlFor="imageName">Nom de l&apos;image</label>
@@ -110,6 +111,7 @@ const UpdateImage = () => {
         />
         <button type="submit">Mettre à jour</button>
       </form>
+    </div>
     </div>
   );
 };

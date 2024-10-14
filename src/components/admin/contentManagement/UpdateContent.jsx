@@ -78,8 +78,9 @@ const UpdateContent = () => {
   if (errorStatuses) return <p>Une erreur s&lsquo;est produite en récupérant les statuts : {errorStatuses.message}</p>;
 
   return (
-    <div className="content-wrapper">
+    <div className="navigation-and-content">
       <AdminNavigation/>
+      <div className="content-wrapper">
       <h2>Modifier le contenu</h2>
       <form onSubmit={handleSubmit} className='form'>
         <label htmlFor="content">Contenu</label>
@@ -126,6 +127,7 @@ const UpdateContent = () => {
           Mettre à jour
         </button>
       </form>
+    </div>
     </div>
   );
 };

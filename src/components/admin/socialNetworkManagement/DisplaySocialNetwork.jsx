@@ -16,6 +16,7 @@ const DisplaySocialNetwork = () => {
 
   return (
     <div>
+      <h2>Liste des réseaux sociaux</h2>
       <table>
         <thead>
           <tr>

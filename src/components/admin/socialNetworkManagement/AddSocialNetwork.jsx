@@ -33,6 +33,7 @@ const AddSocialNetwork = () => {
 
   return (
     <>
+    <h2>Ajouter un réseau social</h2>
       <form onSubmit={handleSubmit} className='form'>
         <label htmlFor="platform">Nom du réseau social*</label>
         <input type="text" id="platform"name="platform" value={platform} onChange={(e) => setPlatform(e.target.value)}/>

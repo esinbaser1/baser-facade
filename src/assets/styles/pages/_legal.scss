@@ -1,9 +1,9 @@
 .legal {
-  padding: 6rem 1.5rem 0 1.5rem;
+margin-top: 2rem;
+  @include marge;
 
   h1 {
     margin-bottom: 2rem;
-    text-align: center;
     color: $main-color;
   }
 

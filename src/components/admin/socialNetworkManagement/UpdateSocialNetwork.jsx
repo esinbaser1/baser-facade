@@ -59,8 +59,9 @@ const UpdateSocialNetwork = () => {
   }
 
   return (
-    <div className="content-wrapper">
+    <div className="navigation-and-content">
     <AdminNavigation/>
+    <div className="content-wrapper">
     <h2>Modifier le réseau social</h2>
       <form onSubmit={handleSubmit} className='form'>
         <label htmlFor="platform">Nom du réseau social*</label>
@@ -71,6 +72,7 @@ const UpdateSocialNetwork = () => {
 
         <button type="submit">Mettre à jour</button>
       </form>
+    </div>
     </div>
   );
 };

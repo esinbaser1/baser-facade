@@ -66,7 +66,7 @@ const App = () => {
 
         </Routes>
 
-        {/* <Footer/> */}
+        <Footer/>
       </BrowserRouter>
       <ToastContainer/>
     </div>
