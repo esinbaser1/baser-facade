@@ -2,11 +2,11 @@ import { useQuery } from "react-query";
 import { getImage } from "../api/imageApi";
 import { URL } from "../api/urlServer";
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 
 const OurRealisations = () => {
-
-  useEffect(( ) => {
-    window.scrollTo(0,0);
+  useEffect(() => {
+    window.scrollTo(0, 0);
   }, []);
 
   const { isLoading, error, data } = useQuery({
@@ -28,6 +28,15 @@ const OurRealisations = () => {
 
   return (
     <div className="ourRealisations ourRealisations-container">
+      <Helmet>
+        <title>
+          Nos Réalisations - Projets de Rénovation de Façades | Baser
+        </title>
+        <meta
+          name="description"
+          content="Découvrez les réalisations de Baser dans les travaux de façade et d'isolation extérieure. Explorez nos projets en rénovation de façades pour des clients satisfaits."
+        />
+      </Helmet>
       <h1>
         Nos Réalisations - Projets de Rénovation et Ravalement de Façades en
         Isère
@@ -51,6 +60,7 @@ const OurRealisations = () => {
             src={`${URL}assets/img/${image.path}`}
             alt={image.altText}
             key={image.id}
+            loading="lazy" 
           />
         ))}
       </div>

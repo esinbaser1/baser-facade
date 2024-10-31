@@ -10,15 +10,11 @@ const DisplayContact = () => {
     queryKey: ["contact"],
     queryFn: getContact,
   });
-
-
   
   const contactList = data?.contact?.length > 0 ? data.contact : [];
   
-
   if (isLoading) return "Chargement...";
   if (error) return "Une erreur s'est produite: " + error.message;
-
 
   return (
     <>

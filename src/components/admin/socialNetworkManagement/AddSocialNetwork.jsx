@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { addSocialNetwork } from "../../../api/socialNetworkApi";
 import { toast } from 'react-toastify';
+
 const AddSocialNetwork = () => {
 
   const [platform, setPlatform] = useState("");

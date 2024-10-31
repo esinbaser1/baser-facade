@@ -31,7 +31,7 @@ const UpdateSocialNetwork = () => {
     }
   });
 
-    // Mutation pour mettre à jour le réseau social
+ 
   const mutation = useMutation({
     mutationFn: updateSocialNetwork,
     onSuccess: (data) => {

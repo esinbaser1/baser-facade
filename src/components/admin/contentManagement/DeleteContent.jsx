@@ -1,8 +1,11 @@
 import { useMutation, useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
 import { deleteContent } from '../../../api/contentApi';
+import ModalAminDelete from "../../ModalAminDelete";
+import { useState } from 'react';
 
 const DeleteContent = ({ contentId }) => {
+  const [modalShow, setModalShow] = useState(false); 
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
@@ -20,17 +23,37 @@ const DeleteContent = ({ contentId }) => {
     }
   });
 
+  // Open delete confirmation modal
   const handleDeleteClick = () => {
-    const confirmed = window.confirm("Êtes-vous sûr de vouloir supprimer ce contenu ?");
-    if (confirmed) {
-      mutation.mutate(contentId);
-    }
+    setModalShow(true);
   };
 
+  // Confirm the deletion
+  const confirmDelete = () => {
+    mutation.mutate(contentId); 
+    setModalShow(false);
+  };
+
+  // Cancel the deletion and close the modal
+  const cancelDelete = () => {
+    setModalShow(false);
+  };
   return (
+    <>
     <button onClick={handleDeleteClick} disabled={mutation.isLoading} className="red-link">
       {mutation.isLoading ? "Suppression..." : "Supprimer"}
     </button>
+    {
+  modalShow && (
+    <ModalAminDelete
+      isOpen={modalShow}
+      contentSuffix={`category : ${contentId}`}
+      onConfirm={confirmDelete}
+      onCancel={cancelDelete}
+    />
+  )
+}
+  </>
   );
 };
 

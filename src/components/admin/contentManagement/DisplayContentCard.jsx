@@ -20,7 +20,7 @@ const DisplayContentCard = ({ content }) => {
 
           <button onClick={handleEditClick}>Modifier</button>
           <DeleteContent contentId={content.id} />
-          {!content.is_archived && <ArchiveContent contentId={content.id} />}
+          { <ArchiveContent contentId={content.id} />}
 
         </div>
 

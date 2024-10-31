@@ -1,13 +1,12 @@
 import { useQuery } from "react-query";
 import { getInformationContact } from "../api/informationContactApi";
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 
 const PrivacyPolicy = () => {
-
-  useEffect(( ) => {
-    window.scrollTo(0,0);
+  useEffect(() => {
+    window.scrollTo(0, 0);
   }, []);
-
 
   const { isLoading, error, data } = useQuery({
     queryKey: ["information"],
@@ -22,17 +21,23 @@ const PrivacyPolicy = () => {
 
   return (
     <section className="legal">
-          <h1>Politique de Confidentialité</h1>
+      <Helmet>
+        <title>Politique de Confidentialité - Baser</title>
+        <meta
+          name="description"
+          content=" Découvrez notre politique de confidentialité et les mesures que nous prenons pour protéger vos données personnelles sur le site de Baser, experts en travaux de façade."
+        />
+      </Helmet>
+      <h1>Politique de Confidentialité</h1>
       <div className="legal__container">
         <article className="items">
           <h2>1. Collecte des données personnelles</h2>
           <hr className="line" />
           <p>
             Nous collectons vos données personnelles à travers notre formulaire
-            de contact disponible sur le site afin de répondre à vos demandes
-            et vous fournir des informations sur nos services. Les données
-            collectées incluent votre nom, adresse email et numéro de
-            téléphone.
+            de contact disponible sur le site afin de répondre à vos demandes et
+            vous fournir des informations sur nos services. Les données
+            collectées incluent votre nom, adresse email et numéro de téléphone.
           </p>
         </article>
 
@@ -75,8 +80,8 @@ const PrivacyPolicy = () => {
           <hr className="line" />
           <p>
             Nous mettons en place des mesures techniques et organisationnelles
-            appropriées pour protéger vos données personnelles contre tout
-            accès non autorisé, toute altération, divulgation ou destruction.
+            appropriées pour protéger vos données personnelles contre tout accès
+            non autorisé, toute altération, divulgation ou destruction.
           </p>
         </article>
 

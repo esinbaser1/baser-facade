@@ -1,8 +1,8 @@
 import { useQuery } from "react-query";
 import { getSocialNetwork } from "../../../api/socialNetworkApi";
 import DisplaySocialNetworkCard from "./DisplaySocialNetworkCard";
+
 const DisplaySocialNetwork = () => {
-  // récupérer les données des resaux à afficher avec useQuery
 
   const { isLoading, error, data } = useQuery({
     queryKey: ["socialNetwork"],

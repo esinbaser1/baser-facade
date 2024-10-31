@@ -31,7 +31,7 @@ const UpdateContent = () => {
 
   // Récupération des données du contenu
   useQuery({
-    queryKey: ["content", idContent],
+    queryKey: ["contents", idContent],
     queryFn: () => getContentById(idContent),
     onSuccess: (data) => {
       if (data) {

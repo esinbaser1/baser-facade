@@ -1,8 +1,11 @@
 import { useMutation, useQueryClient } from 'react-query';
 import { toast } from 'react-toastify';
 import { deleteImage } from '../../../api/imageApi';
+import { useState } from 'react';
+import ModalAminDelete from "../../ModalAminDelete";
 
 const DeleteImage = ({ imageId }) => {
+  const [modalShow, setModalShow] = useState(false);
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
@@ -19,17 +22,39 @@ const DeleteImage = ({ imageId }) => {
       toast.error("Erreur de serveur : " + error.message);
     }
   });
-
+  // Open delete confirmation modal
   const handleDeleteClick = () => {
-    const confirmed = window.confirm("Êtes-vous sûr de vouloir supprimer cette image ?");
-    if (confirmed) {
-      mutation.mutate(imageId);
-    }
+    setModalShow(true);
+  };
+
+  // Confirm the deletion
+  const confirmDelete = () => {
+    mutation.mutate(imageId); 
+    setModalShow(false);
+  };
+
+  // Cancel the deletion and close the modal
+  const cancelDelete = () => {
+    setModalShow(false);
   };
   return (
+    <>
       <button onClick={handleDeleteClick} disabled={mutation.isLoading} className='red-link'>
       {mutation.isLoading ? "Suppression..." : "Supprimer"}
     </button>
+
+      {/* Show confirmation modal */}
+      {
+  modalShow && (
+    <ModalAminDelete
+      isOpen={modalShow}
+      contentSuffix={`category : ${imageId}`}
+      onConfirm={confirmDelete}
+      onCancel={cancelDelete}
+    />
+  )
+}
+    </>
   );
 };
 

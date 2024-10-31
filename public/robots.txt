@@ -1,0 +1,14 @@
+User-agent: *
+Disallow : /Admin
+Disallow : /gestionContenu
+Disallow : /modifierContenu
+Disallow : /modifierImage
+Disallow : /gestionImage
+Disallow : /gestionReseauSocial
+Disallow : /gestionInformationContact
+Disallow : /gestionContact
+Disallow : /modifierReseauSocial
+Disallow : /modifierInformation
+
+# Autoriser le reste du site à être indexé
+Allow: /

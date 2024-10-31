@@ -1,11 +1,11 @@
 import { useQuery } from "react-query";
 import { getInformationContact } from "../api/informationContactApi";
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 
 const LegalNotice = () => {
-
-  useEffect(( ) => {
-    window.scrollTo(0,0);
+  useEffect(() => {
+    window.scrollTo(0, 0);
   }, []);
 
   const { isLoading, error, data } = useQuery({
@@ -21,9 +21,15 @@ const LegalNotice = () => {
 
   return (
     <section className="legal">
-          <h1>Mentions Légales</h1>
+      <Helmet>
+        <title>Mentions Légales - Baser Travaux de Façade</title>
+        <meta
+          name="description"
+          content="Consultez les mentions légales de Baser, entreprise spécialisée en rénovation et isolation de façades. Toutes les informations légales sur notre site et notre société"
+        />
+      </Helmet>
+      <h1>Mentions Légales</h1>
       <div className="legal__container">
-
         <article className="items">
           <h2>1. Éditeur du site</h2>
           <hr className="line" />
@@ -36,22 +42,22 @@ const LegalNotice = () => {
               <strong>Forme juridique</strong> : Entrepreneur individuel
             </li>
             <li>
-              <strong>Adresse du siège social</strong> :{" "}
-              {information ? information.address : "Adresse non disponible"}{" "}
+              <strong>Adresse du siège social</strong> :
+              {information ? information.address : "Adresse non disponible"}
             </li>
             <li>
-              <strong>Numéro de téléphone</strong> :{" "}
-              {information ? information.mobile : "Numéro non disponible"}{" "}
+              <strong>Numéro de téléphone</strong> :
+              {information ? information.mobile : "Numéro non disponible"}
             </li>
             <li>
-              <strong>Email de contact</strong> :{" "}
-              {information ? information.email : "Email non disponible"}{" "}
+              <strong>Email de contact</strong> :
+              {information ? information.email : "Email non disponible"}
             </li>
             <li>
               <strong>Numéro SIRET</strong> : 94916979100017
             </li>
             <li>
-              <strong>Directeur de la publication</strong> : Baser Yilmaz{" "}
+              <strong>Directeur de la publication</strong> : Baser Yilmaz
             </li>
           </ul>
         </article>
