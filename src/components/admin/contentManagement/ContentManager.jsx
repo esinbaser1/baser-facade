@@ -1,7 +1,13 @@
+import { useEffect } from "react";
 import AdminNavigation from "../AdminNavigation";
 import AddContent from "./AddContent";
 import DisplayContent from "./DisplayContent";
 const ContentManager = () => {
+
+    useEffect(() => {
+        window.scrollTo(0,0);
+    }, []);
+
     return (
         <div className="navigation-and-content">
             <AdminNavigation/>

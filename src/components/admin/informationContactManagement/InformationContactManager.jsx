@@ -1,8 +1,14 @@
+import { useEffect } from "react";
 import AdminNavigation from "../AdminNavigation";
 import AddinformationContact from "./AddinformationContact";
 import DisplayInformationContact from "./DisplayInformationContact";
 
 const InformationContactManager = () => {
+
+  useEffect(() => {
+    window.scrollTo(0,0);
+  }, []);
+
   return (
     <div className="navigation-and-content">
       <AdminNavigation/>

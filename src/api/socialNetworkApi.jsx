@@ -20,12 +20,14 @@ export const addSocialNetwork = async (newContent) => {
 
 // Mettre à jour un contenu
 export const updateSocialNetwork = async (updatedContent) => {
-  const response = await apiClient.post("updateSocialNetwork", updatedContent);
+  const response = await apiClient.put("updateSocialNetwork", updatedContent);
   return response.data;
 };
 
 // Supprimer du contenu
 export const deleteSocialNetwork = async (id) => {
-  const response = await apiClient.post("deleteSocialNetwork", { id });
+  const response = await apiClient.delete(`deleteSocialNetwork/${id}`);
   return response.data;
 };
+
+

@@ -142,6 +142,19 @@
 
 }
 
+.no-message {
+font-style: italic;
+color: gray;
+}
+
+.status-unread {
+  color:red;
+}
+
+.status-read {
+  color: green;
+}
+
 
 @media screen and (max-width: 1030px) {
   .contact__container {

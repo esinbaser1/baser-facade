@@ -5,8 +5,14 @@ import { useMutation, useQuery, useQueryClient } from "react-query";
 import { getImageById, updateImage } from "../../../api/imageApi";
 import { toast } from "react-toastify";
 import AdminNavigation from "../AdminNavigation";
+import { useEffect } from "react";
 
 const UpdateImage = () => {
+
+  useEffect(() => {
+    window.scrollTo(0,0);
+  }, []);
+
   const { idImage } = useParams();  // Récupère l'ID de l'image depuis l'URL
   const queryClient = useQueryClient();
 

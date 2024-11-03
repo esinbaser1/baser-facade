@@ -26,7 +26,7 @@ const DisplayImage = () => {
           </tr>
         </thead>
         <tbody>
-          {imageList ? (
+          {imageList.length > 0  ? (
             imageList.map((item) => (
               <DisplayImageCard key={item.id} image={item} />
             ))

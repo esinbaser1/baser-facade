@@ -4,6 +4,7 @@ import { getContact } from "../../../api/contactApi";
 import DisplayContactCard from "./DisplayContactCard";
 
 const DisplayContact = () => {
+  
   const [showDetails, setShowDetails] = useState(false);
 
   const { isLoading, error, data } = useQuery({
@@ -40,7 +41,7 @@ const DisplayContact = () => {
           </tr>
         </thead>
         <tbody>
-          {contactList ? (
+          {contactList.length > 0  ? (
             contactList.map((item) => (
               <DisplayContactCard
                 key={item.id}

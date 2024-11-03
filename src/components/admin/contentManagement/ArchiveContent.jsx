@@ -45,6 +45,7 @@ const ArchiveContent = ({ contentId }) => {
       {
         modalShow && (
           <ModalAdminArchive
+          isOpen={modalShow}
           contentSuffix={`ce contenu : ${contentId}`}
           onConfirm={confirmArchive}
           onCancel={cancelArchive}

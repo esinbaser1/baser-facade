@@ -25,7 +25,7 @@ const AddSocialNetwork = () => {
     onError: (error) => {
       toast.error("Erreur de serveur : " + error.message)
     }
-  })
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();

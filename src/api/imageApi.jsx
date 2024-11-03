@@ -29,6 +29,6 @@ export const updateImage = async (updatedImage) => {
 };
 
 export const deleteImage = async (id) => {
-  const response = await apiClient.post("deleteImage", { id });
+  const response = await apiClient.delete(`deleteImage/${id}`);
   return response.data;
 };

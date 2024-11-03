@@ -20,13 +20,13 @@ export const addContent = async (newContent) => {
 
 // Mettre à jour un contenu
 export const updateContent = async (updatedContent) => {
-  const response = await apiClient.post("updateContent", updatedContent);
+  const response = await apiClient.put("updateContent", updatedContent);
   return response.data;
 };
 
 // Supprimer du contenu
 export const deleteContent = async (id) => {
-  const response = await apiClient.post("deleteContent", { id });
+  const response = await apiClient.delete(`deleteContent/${id}`);
   return response.data;
 };
 

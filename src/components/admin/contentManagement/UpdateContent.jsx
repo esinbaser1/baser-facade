@@ -6,8 +6,13 @@ import { getStatuses } from '../../../api/statusApi';
 import { getSections } from '../../../api/sectionApi';
 import { toast } from "react-toastify";
 import AdminNavigation from "../AdminNavigation";
+import { useEffect } from "react";
 
 const UpdateContent = () => {
+
+  useEffect(() => {
+    window.scrollTo(0,0);
+  }, []);
   
   const { idContent } = useParams();
   

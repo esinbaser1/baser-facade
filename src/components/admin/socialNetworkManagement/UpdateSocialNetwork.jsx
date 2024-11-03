@@ -4,8 +4,13 @@ import { useParams } from "react-router-dom";
 import { getSocialNetworkById, updateSocialNetwork } from "../../../api/socialNetworkApi";
 import { toast } from 'react-toastify';
 import AdminNavigation from "../AdminNavigation";
+import { useEffect } from "react";
 
 const UpdateSocialNetwork = () => {
+
+  useEffect(() => {
+    window.scrollTo(0,0);
+  }, []);
 
   const {idSocialNetwork} = useParams();
 
@@ -14,8 +19,6 @@ const UpdateSocialNetwork = () => {
 
   const queryClient = useQueryClient();
 
-
-  // Récupération des données des réseaux sociaux
   useQuery({
     queryKey: ['socialNetwork', idSocialNetwork],
     queryFn: () => getSocialNetworkById(idSocialNetwork),

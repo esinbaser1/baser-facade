@@ -17,11 +17,11 @@ export const addInformationContact = async (newInformation) => {
 
 
 export const updateInformationContact = async (updatedInformation) => {
-  const response = await apiClient.post("updateInformation", updatedInformation);
+  const response = await apiClient.put("updateInformation", updatedInformation);
   return response.data;
 }
 
 export const deleteInformationContact = async (id) => {
-  const response = await apiClient.post("deleteInformation", {id});
+  const response = await apiClient.delete(`deleteInformation/${id}`);
   return response.data;
 }

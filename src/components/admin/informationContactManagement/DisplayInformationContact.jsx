@@ -28,7 +28,7 @@ const DisplayInformationContact = () => {
           </tr>
         </thead>
         <tbody>
-          {informationList ? (
+          {informationList.length > 0  ? (
             informationList.map((item) => (
               <DisplayInformationContactCard key={item.id} information={item} />
             ))

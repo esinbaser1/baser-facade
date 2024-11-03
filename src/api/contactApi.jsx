@@ -26,7 +26,7 @@ export const archiveContact = async (id) => {
 };
 
 export const deleteContact = async (id) => {
-  const response = await apiClient.post('deleteContact', { id });
+  const response = await apiClient.delete(`deleteContact/${id}`);
   return response.data;
 }
 

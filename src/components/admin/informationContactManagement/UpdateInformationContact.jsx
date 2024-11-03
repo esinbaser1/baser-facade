@@ -4,8 +4,13 @@ import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import { getInformationContactById, updateInformationContact } from "../../../api/informationContactApi";
 import AdminNavigation from "../AdminNavigation";
+import { useEffect } from "react";
 
 const UpdateInformationContact = () => {
+
+  useEffect(() => {
+    window.scrollTo(0,0);
+  }, []);
 
   const { idInformation } = useParams();
   

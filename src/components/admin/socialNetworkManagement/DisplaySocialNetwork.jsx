@@ -28,7 +28,7 @@ const DisplaySocialNetwork = () => {
           </tr>
         </thead>
         <tbody>
-          {socialNetworkList ? (
+          {socialNetworkList.length > 0  ? (
             socialNetworkList.map((item) => (
               <DisplaySocialNetworkCard key={item.id} socialNetwork={item} />
             ))

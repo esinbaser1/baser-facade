@@ -31,14 +31,21 @@ const DisplayContactCard = ({ contact }) => {
     <>
       <tr>
         <td data-label="Email">{contact.email}</td>
-        <td  data-label="Message" className={contact.message === 'Pas de message.' ? 'no-message' : ''}>
-  {selectedContactId === contact.id ? contact.message : getTruncatedMessage(contact.message)}
-</td>
-
-        
+        <td
+          data-label="Message"
+          className={contact.message === "Pas de message." ? "no-message" : ""}
+        >
+          {selectedContactId === contact.id
+            ? contact.message
+            : getTruncatedMessage(contact.message)}
+        </td>
 
         <td data-label="Date d'envoi">{contact.sending_date}</td>
-        <td data-label="Statut" className={contact.status_name === "Non lu" ? "status-unread" : ""}>
+        <td
+          data-label="Statut"
+          className={contact.status_name === "Non lu" ? "status-unread" : contact.status_name === "Répondu" ? "status-read" : ""}
+
+        >
           {contact.status_name}
         </td>
 
@@ -64,22 +71,21 @@ const DisplayContactCard = ({ contact }) => {
       {selectedContactId === contact.id && (
         <tr>
           <td colSpan="5" className="contact-details">
-   
-              <p>
-                <strong>Nom :</strong> {contact.lastname}
-              </p>
-              <p>
-                <strong>Prénom :</strong> {contact.firstname}
-              </p>
-              <p>
-                <strong>Téléphone :</strong> {contact.mobile}
-              </p>
-              <p>
-                <strong>Ville :</strong> {contact.city}
-              </p>
-              <p>
-                <strong>Projet :</strong> {contact.project_name}
-              </p>
+            <p>
+              <strong>Nom :</strong> {contact.lastname}
+            </p>
+            <p>
+              <strong>Prénom :</strong> {contact.firstname}
+            </p>
+            <p>
+              <strong>Téléphone :</strong> {contact.mobile}
+            </p>
+            <p>
+              <strong>Ville :</strong> {contact.city}
+            </p>
+            <p>
+              <strong>Projet :</strong> {contact.project_name}
+            </p>
           </td>
         </tr>
       )}
